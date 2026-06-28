@@ -280,6 +280,12 @@
     .email-preview-actions button { border: none; border-radius: 9px; padding: 10px 18px; font-weight: 600; cursor: pointer; font-family: var(--font-main); }
     .email-preview-actions .btn-send { background: var(--primary); color: #fff; }
     .email-preview-actions .btn-cancel { background: #f7f9f8; color: var(--ink); border: 1px solid #dde4e0; }
+    .faq-sec { background: var(--cream-dk); padding: 80px 40px; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; max-width: 900px; margin-left: auto; margin-right: auto; }
+    .faq-item { background: var(--white); border: 1px solid rgba(0,0,0,.06); border-radius: 14px; overflow: hidden; }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 18px 20px; font-size: 15px; font-weight: 700; color: var(--primary); cursor: pointer; font-family: var(--font-main); display: flex; justify-content: space-between; align-items: center; }
+    .faq-answer { padding: 0 20px 20px; color: var(--ink-light); font-size: 14px; line-height: 1.7; }
+    .faq-fab { position: fixed; right: 20px; bottom: 20px; z-index: 700; background: var(--primary); color: #fff; border: none; border-radius: 999px; padding: 13px 18px; box-shadow: var(--shadow); font-weight: 700; cursor: pointer; font-family: var(--font-main); }
 
     .logo-upload { border: 2px dashed #c8d4cc; border-radius: var(--radius); padding: 28px; text-align: center; cursor: pointer; transition: var(--transition); background: #fafcfb; position: relative; }
     .logo-upload:hover { border-color: var(--primary); background: #f0f7f3; }
@@ -372,7 +378,7 @@
         <div class="sub" id="brand-tagline">Excelência em Educação Linguística</div>
       </div>
     </div>
-    <button class="nav-cta" onclick="document.getElementById('hero-form').scrollIntoView({behavior:'smooth'})">Candidatar-se →</button>
+    <button class="nav-cta" id="nav-cta-label" onclick="document.getElementById('hero-form').scrollIntoView({behavior:'smooth'})">Candidatar-se →</button>
   </nav>
 
   <!-- HERO -->
@@ -455,8 +461,8 @@
           <label>Motivação — Por que quer integrar a nossa equipa?</label>
           <textarea id="f-why" placeholder="Conte-nos brevemente sobre si e a sua motivação..."></textarea>
         </div>
-        <button class="form-submit" onclick="handleSubmit()">Enviar Candidatura →</button>
-        <div class="form-privacy">🔒 Os seus dados são tratados de forma confidencial</div>
+        <button class="form-submit" id="hero-form-submit" onclick="handleSubmit()">Enviar Candidatura →</button>
+        <div class="form-privacy" id="hero-form-privacy">🔒 Os seus dados são tratados de forma confidencial</div>
       </div>
     </div>
   </section>
@@ -601,6 +607,17 @@
     </div>
   </section>
 
+  <section class="faq-sec" id="faq-section">
+    <div style="max-width:1100px;margin:0 auto;text-align:center">
+      <div class="sec-kicker" style="justify-content:center"><div class="sec-kicker-dot"></div> <span id="faq-kicker">Perguntas Frequentes</span></div>
+      <h2 class="sec-h2" id="faq-title">Perguntas Frequentes</h2>
+      <p class="sec-body" id="faq-sub" style="margin:0 auto;">Aceda às respostas mais comuns sobre o processo e as oportunidades na equipa.</p>
+      <div class="faq-list" id="faq-list"></div>
+    </div>
+  </section>
+
+  <button class="faq-fab" onclick="document.getElementById('faq-section').scrollIntoView({behavior:'smooth'})" id="faq-fab-label">❓ FAQ</button>
+
   <div id="custom-sections"></div>
 
   <!-- FOOTER -->
@@ -615,9 +632,9 @@
   <div class="suc-overlay" id="suc-overlay">
     <div class="suc-box">
       <div class="icon">🇧🇷</div>
-      <h2>Candidatura Enviada!</h2>
-      <p>Obrigado pelo seu interesse em integrar o <strong>Brazilian Language Center</strong>. A nossa equipa entrará em contacto em 48 horas úteis.</p>
-      <button class="suc-close" onclick="document.getElementById('suc-overlay').classList.remove('show')">Fechar</button>
+      <h2 id="success-title">Candidatura Enviada!</h2>
+      <p id="success-body">Obrigado pelo seu interesse em integrar o <strong>Brazilian Language Center</strong>. A nossa equipa entrará em contacto em 48 horas úteis.</p>
+      <button class="suc-close" id="success-close" onclick="document.getElementById('suc-overlay').classList.remove('show')">Fechar</button>
     </div>
   </div>
 </div>
@@ -778,6 +795,12 @@
               <div class="sf"><label>Hero - Tags (uma por linha)</label><textarea id="edit-hero-tags" rows="3">Tempo integral / parcial
 Ambiente profissional
 Pacote competitivo</textarea></div>
+              <div class="sf"><label>Botão principal do menu</label><input type="text" id="edit-nav-cta" value="Candidatar-se →"></div>
+              <div class="sf"><label>Texto do botão de envio do formulário</label><input type="text" id="edit-form-submit" value="Enviar Candidatura →"></div>
+              <div class="sf"><label>Texto de privacidade do formulário</label><input type="text" id="edit-form-privacy" value="🔒 Os seus dados são tratados de forma confidencial"></div>
+              <div class="sf"><label>Texto do separador / anúncio</label><input type="text" id="edit-announce" value="Vagas Abertas — Instrutor de Português Brasileiro"></div>
+              <div class="sf"><label>Texto do separador FAQ</label><input type="text" id="edit-faq-title" value="Perguntas Frequentes"></div>
+              <div class="sf"><label>Legenda do separador FAQ</label><input type="text" id="edit-faq-kicker" value="Perguntas Frequentes"></div>
             </div>
             <div>
               <div class="sf"><label>Formulário - Badge</label><input type="text" id="edit-form-badge" value="📋 Candidatura Aberta"></div>
@@ -785,22 +808,31 @@ Pacote competitivo</textarea></div>
               <div class="sf"><label>Formulário - Subtítulo</label><input type="text" id="edit-form-sub" value="A nossa equipa entrará em contacto em 48 horas"></div>
               <div class="sf"><label>Benefícios - Título</label><textarea id="edit-benefits-title" rows="2">Um Ambiente de Trabalho à Altura das Suas Ambições</textarea></div>
               <div class="sf"><label>Benefícios - Subtítulo</label><textarea id="edit-benefits-sub" rows="2">No Brazilian Language Center, acreditamos que o instrutor é o coração da instituição.</textarea></div>
+              <div class="sf"><label>Benefícios - Kicker</label><input type="text" id="edit-benefits-kicker" value="Por Que Nós"></div>
               <div class="sf"><label>Missão - Título</label><textarea id="edit-about-title" rows="2">Formamos Pontes entre Culturas</textarea></div>
               <div class="sf"><label>Missão - Descrição</label><textarea id="edit-about-body" rows="2">O Brazilian Language Center nasceu com uma missão clara: tornar o Português do Brasil acessível, vivo e apaixonante.</textarea></div>
+              <div class="sf"><label>Missão - Kicker</label><input type="text" id="edit-about-kicker" value="A Nossa Missão"></div>
             </div>
           </div>
           <div class="grid-2" style="margin-top:12px;">
             <div>
               <div class="sf"><label>Requisitos - Título</label><input type="text" id="edit-req-title" value="O Que Procuramos"></div>
               <div class="sf"><label>Requisitos - Subtítulo</label><textarea id="edit-req-body" rows="2">Não procuramos apenas um professor — procuramos alguém com uma missão.</textarea></div>
+              <div class="sf"><label>Requisitos - Kicker</label><input type="text" id="edit-req-kicker" value="Requisitos"></div>
               <div class="sf"><label>Processo - Título</label><textarea id="edit-process-title" rows="2">Como Funciona o Processo?</textarea></div>
+              <div class="sf"><label>Processo - Kicker</label><input type="text" id="edit-process-kicker" value="Processo de Candidatura"></div>
               <div class="sf"><label>Marquee - Texto</label><input type="text" id="edit-marquee" value="Português do Brasil · Excelência · Ambiente Internacional"></div>
+              <div class="sf"><label>Texto da secção FAQ</label><input type="text" id="edit-faq-sub" value="Aceda às respostas mais comuns sobre o processo e as oportunidades na equipa."></div>
+              <div class="sf"><label>Texto do botão FAQ</label><input type="text" id="edit-faq-fab" value="❓ FAQ"></div>
             </div>
             <div>
               <div class="sf"><label>Contacto - Título</label><textarea id="edit-contact-title" rows="2">Tem Alguma Questão?</textarea></div>
               <div class="sf"><label>Contacto - Descrição</label><textarea id="edit-contact-body" rows="2">A nossa equipa de recrutamento está disponível para responder a todas as suas dúvidas.</textarea></div>
+              <div class="sf"><label>Contacto - Kicker</label><input type="text" id="edit-contact-kicker" value="Contacto"></div>
               <div class="sf"><label>E-mail de Contacto</label><input type="email" id="edit-contact-email" value="recruitment.blc.eg@gmail.com"></div>
               <div class="sf"><label>Rodapé - Texto</label><input type="text" id="edit-footer-copy" value="Recrutamento: recruitment.blc.eg@gmail.com"></div>
+              <div class="sf"><label>Título da mensagem de sucesso</label><input type="text" id="edit-success-title" value="Candidatura Enviada!"></div>
+              <div class="sf"><label>Texto da mensagem de sucesso</label><textarea id="edit-success-body" rows="3">Obrigado pelo seu interesse em integrar o Brazilian Language Center. A nossa equipa entrará em contacto em 48 horas úteis.</textarea></div>
             </div>
           </div>
           <div class="acard" style="margin-top:18px;">
@@ -848,6 +880,13 @@ Pacote competitivo</textarea></div>
         <div class="acard">
           <div class="acard-title">🗂️ Secções públicas atuais</div>
           <div class="page-section-list" id="page-section-list"></div>
+        </div>
+        <div class="acard">
+          <div class="acard-title">❓ Perguntas Frequentes</div>
+          <div class="sf"><label>Pergunta</label><input type="text" id="new-faq-question" placeholder="Ex.: Quando recebo uma resposta?"></div>
+          <div class="sf"><label>Resposta</label><textarea id="new-faq-answer" rows="3" placeholder="Escreva a resposta"></textarea></div>
+          <button class="save-btn" onclick="addFaq()">➕ Adicionar FAQ</button>
+          <div class="save-ok" id="ok-add-faq">✅ FAQ adicionada!</div>
         </div>
       </div>
 
@@ -1589,6 +1628,14 @@ function applyContent(content) {
   document.getElementById('hero-kicker').textContent = c.heroKicker;
   document.getElementById('hero-headline').innerHTML = (c.heroHeadline || '').replace(/\n/g, '<br>');
   document.getElementById('hero-copy').textContent = c.heroCopy;
+  document.getElementById('nav-cta-label').textContent = c.navCta || 'Candidatar-se →';
+  document.getElementById('hero-form-submit').textContent = c.formSubmit || 'Enviar Candidatura →';
+  document.getElementById('hero-form-privacy').textContent = c.formPrivacy || '🔒 Os seus dados são tratados de forma confidencial';
+  document.getElementById('benefits-kicker').textContent = c.benefitsKicker || 'Por Que Nós';
+  document.getElementById('about-kicker').textContent = c.aboutKicker || 'A Nossa Missão';
+  document.getElementById('req-kicker').textContent = c.reqKicker || 'Requisitos';
+  document.getElementById('process-kicker').textContent = c.processKicker || 'Processo de Candidatura';
+  document.getElementById('contact-kicker').textContent = c.contactKicker || 'Contacto';
   document.getElementById('form-badge').textContent = c.formBadge;
   document.getElementById('form-title').textContent = c.formTitle;
   document.getElementById('form-sub').textContent = c.formSub;
@@ -1608,6 +1655,12 @@ function applyContent(content) {
   document.getElementById('footer-copy').textContent = c.footerCopy;
   document.getElementById('cta-title').innerHTML = (c.ctaTitle || '').replace(/\n/g, '<br>');
   document.getElementById('cta-body').textContent = c.ctaBody;
+  document.getElementById('faq-sub').textContent = c.faqSub || 'Aceda às respostas mais comuns sobre o processo e as oportunidades na equipa.';
+  document.getElementById('faq-fab-label').textContent = c.faqFab || '❓ FAQ';
+  document.getElementById('faq-title').textContent = c.faqTitle || 'Perguntas Frequentes';
+  document.getElementById('faq-kicker').textContent = c.faqKicker || 'Perguntas Frequentes';
+  document.getElementById('success-title').textContent = c.successTitle || 'Candidatura Enviada!';
+  document.getElementById('success-body').innerHTML = (c.successBody || 'Obrigado pelo seu interesse em integrar o Brazilian Language Center. A nossa equipa entrará em contacto em 48 horas úteis.').replace(/\n/g, '<br>');
   const heroTags = Array.isArray(c.heroTags) ? c.heroTags : String(c.heroTags || '').split(/\n|,/).map(t => t.trim()).filter(Boolean);
   document.getElementById('hero-tags').innerHTML = heroTags.length ? heroTags.map(tag => `<span>${esc(tag)}</span>`).join('') : '<span>Tempo integral / parcial</span><span>Ambiente profissional</span><span>Pacote competitivo</span>';
   const marquee = document.getElementById('marquee-track');
@@ -1619,6 +1672,7 @@ function applyContent(content) {
     if (num) num.textContent = stats['stat' + index + '-num'] || num.textContent;
     if (lbl) lbl.textContent = stats['stat' + index + '-lbl'] || lbl.textContent;
   });
+  renderFaqs();
 }
 
 function saveContent() {
@@ -1653,6 +1707,20 @@ function saveContent() {
     if (el) content[key] = el.value;
   });
   content.heroTags = document.getElementById('edit-hero-tags').value.split(/\n|,/).map(tag => tag.trim()).filter(Boolean);
+  content.navCta = document.getElementById('edit-nav-cta').value;
+  content.formSubmit = document.getElementById('edit-form-submit').value;
+  content.formPrivacy = document.getElementById('edit-form-privacy').value;
+  content.faqSub = document.getElementById('edit-faq-sub').value;
+  content.faqFab = document.getElementById('edit-faq-fab').value;
+  content.faqTitle = document.getElementById('edit-faq-title').value || 'Perguntas Frequentes';
+  content.faqKicker = document.getElementById('edit-faq-kicker').value || 'Perguntas Frequentes';
+  content.benefitsKicker = document.getElementById('edit-benefits-kicker').value;
+  content.aboutKicker = document.getElementById('edit-about-kicker').value;
+  content.reqKicker = document.getElementById('edit-req-kicker').value;
+  content.processKicker = document.getElementById('edit-process-kicker').value;
+  content.contactKicker = document.getElementById('edit-contact-kicker').value;
+  content.successTitle = document.getElementById('edit-success-title').value;
+  content.successBody = document.getElementById('edit-success-body').value;
   content.stats = {
     'stat1-num': document.getElementById('edit-stat1-num').value,
     'stat1-lbl': document.getElementById('edit-stat1-lbl').value,
@@ -1704,6 +1772,47 @@ function renderDynamicEditors() {
   `).join('');
 }
 
+function renderFaqs() {
+  const list = document.getElementById('faq-list');
+  const items = getData('faqs', []);
+  if (!list) return;
+  if (!items.length) {
+    list.innerHTML = '<div class="sub-empty">Ainda não existem FAQs. Adicione as perguntas mais comuns aqui.</div>';
+    return;
+  }
+  list.innerHTML = items.map((item, index) => `
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(${index})">
+        <span>${esc(item.question || '')}</span>
+        <span>+</span>
+      </button>
+      <div class="faq-answer" style="display:none;">${esc(item.answer || '')}</div>
+    </div>
+  `).join('');
+}
+
+function toggleFaq(index) {
+  const items = document.querySelectorAll('.faq-item');
+  if (!items[index]) return;
+  const answer = items[index].querySelector('.faq-answer');
+  const isOpen = answer.style.display === 'block';
+  answer.style.display = isOpen ? 'none' : 'block';
+}
+
+function addFaq() {
+  const question = document.getElementById('new-faq-question').value.trim();
+  const answer = document.getElementById('new-faq-answer').value.trim();
+  if (!question || !answer) { alert('Preencha a pergunta e a resposta.'); return; }
+  const faqs = getData('faqs', []);
+  faqs.push({ question, answer });
+  setData('faqs', faqs);
+  renderFaqs();
+  document.getElementById('new-faq-question').value = '';
+  document.getElementById('new-faq-answer').value = '';
+  document.getElementById('ok-add-faq').classList.add('show');
+  setTimeout(() => document.getElementById('ok-add-faq').classList.remove('show'), 3000);
+}
+
 function saveDynamicContent() {
   const updated = {};
   document.querySelectorAll('[data-group]').forEach(input => {
@@ -1723,6 +1832,7 @@ function saveDynamicContent() {
   applyRequirements(getData('requirements', []));
   applyProcessSteps(getData('processSteps', []));
   applyPreferred(getData('preferred', []));
+  renderFaqs();
   document.getElementById('ok-dynamic').classList.add('show');
   setTimeout(() => document.getElementById('ok-dynamic').classList.remove('show'), 3000);
 }
