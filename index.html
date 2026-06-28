@@ -287,9 +287,10 @@
     .faq-sec { background: var(--cream-dk); padding: 80px 40px; }
     .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; max-width: 900px; margin-left: auto; margin-right: auto; }
     .faq-item { background: var(--white); border: 1px solid rgba(0,0,0,.06); border-radius: 14px; overflow: hidden; }
-    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 18px 20px; font-size: 15px; font-weight: 700; color: var(--primary); cursor: pointer; font-family: var(--font-main); display: flex; justify-content: space-between; align-items: center; }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 18px 20px; font-size: 15px; font-weight: 700; color: var(--primary); cursor: pointer; font-family: var(--font-main); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
     .faq-answer { padding: 0 20px 20px; color: var(--ink-light); font-size: 14px; line-height: 1.7; }
-    .faq-fab { position: fixed; right: 20px; bottom: 20px; z-index: 700; background: var(--primary); color: #fff; border: none; border-radius: 999px; padding: 13px 18px; box-shadow: var(--shadow); font-weight: 700; cursor: pointer; font-family: var(--font-main); }
+    .faq-icon { font-size: 18px; color: var(--gold); transition: transform .2s ease; }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
 
     .logo-upload { border: 2px dashed #c8d4cc; border-radius: var(--radius); padding: 28px; text-align: center; cursor: pointer; transition: var(--transition); background: #fafcfb; position: relative; }
     .form-field-editor-list { display: flex; flex-direction: column; gap: 12px; }
@@ -590,8 +591,6 @@
     </div>
   </section>
 
-  <button class="faq-fab" onclick="document.getElementById('faq-section').scrollIntoView({behavior:'smooth'})" id="faq-fab-label">❓ FAQ</button>
-
   <div id="custom-sections"></div>
 
   <!-- FOOTER -->
@@ -797,7 +796,6 @@ Pacote competitivo</textarea></div>
               <div class="sf"><label>Processo - Kicker</label><input type="text" id="edit-process-kicker" value="Processo de Candidatura"></div>
               <div class="sf"><label>Marquee - Texto</label><input type="text" id="edit-marquee" value="Português do Brasil · Excelência · Ambiente Internacional"></div>
               <div class="sf"><label>Texto da secção FAQ</label><input type="text" id="edit-faq-sub" value="Aceda às respostas mais comuns sobre o processo e as oportunidades na equipa."></div>
-              <div class="sf"><label>Texto do botão FAQ</label><input type="text" id="edit-faq-fab" value="❓ FAQ"></div>
             </div>
             <div>
               <div class="sf"><label>Contacto - Título</label><textarea id="edit-contact-title" rows="2">Tem Alguma Questão?</textarea></div>
@@ -1675,7 +1673,6 @@ function applyContent(content) {
   document.getElementById('cta-title').innerHTML = (c.ctaTitle || '').replace(/\n/g, '<br>');
   document.getElementById('cta-body').textContent = c.ctaBody;
   document.getElementById('faq-sub').textContent = c.faqSub || 'Aceda às respostas mais comuns sobre o processo e as oportunidades na equipa.';
-  document.getElementById('faq-fab-label').textContent = c.faqFab || '❓ FAQ';
   document.getElementById('faq-title').textContent = c.faqTitle || 'Perguntas Frequentes';
   document.getElementById('faq-kicker').textContent = c.faqKicker || 'Perguntas Frequentes';
   document.getElementById('success-title').textContent = c.successTitle || 'Candidatura Enviada!';
@@ -1730,7 +1727,6 @@ function saveContent() {
   content.formSubmit = document.getElementById('edit-form-submit').value;
   content.formPrivacy = document.getElementById('edit-form-privacy').value;
   content.faqSub = document.getElementById('edit-faq-sub').value;
-  content.faqFab = document.getElementById('edit-faq-fab').value;
   content.faqTitle = document.getElementById('edit-faq-title').value || 'Perguntas Frequentes';
   content.faqKicker = document.getElementById('edit-faq-kicker').value || 'Perguntas Frequentes';
   content.benefitsKicker = document.getElementById('edit-benefits-kicker').value;
@@ -1910,7 +1906,15 @@ function renderDynamicEditors() {
 
 function renderFaqs() {
   const list = document.getElementById('faq-list');
-  const items = getData('faqs', []);
+  const stored = getData('faqs');
+  const defaultFaqs = [
+    { question: 'Quem pode candidatar-se a esta vaga?', answer: 'A vaga é destinada a candidatos com forte domínio do Português do Brasil, experiência na docência e interesse em contribuir para um ambiente de aprendizagem de qualidade.' },
+    { question: 'Quais são os requisitos principais?', answer: 'Valorizamos experiência em ensino, boa comunicação, disponibilidade para trabalhar em projetos educativos e uma postura profissional alinhada com os valores da instituição.' },
+    { question: 'Como funciona o processo de candidatura?', answer: 'Após submeter a candidatura, a nossa equipa analisa os dados e entra em contacto para dar continuidade ao processo.' },
+    { question: 'Quando recebo uma resposta?', answer: 'Normalmente, a resposta é dada dentro de um prazo curto após a análise da candidatura, de acordo com o volume de inscrições.' }
+  ];
+  const items = Array.isArray(stored) && stored.length ? stored : defaultFaqs;
+  if (!Array.isArray(stored) || !stored.length) setData('faqs', items);
   if (!list) return;
   if (!items.length) {
     list.innerHTML = '<div class="sub-empty">Ainda não existem FAQs. Adicione as perguntas mais comuns aqui.</div>';
@@ -1918,9 +1922,9 @@ function renderFaqs() {
   }
   list.innerHTML = items.map((item, index) => `
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(${index})">
+      <button class="faq-question" onclick="toggleFaq(${index})" aria-expanded="false">
         <span>${esc(item.question || '')}</span>
-        <span>+</span>
+        <span class="faq-icon">⌄</span>
       </button>
       <div class="faq-answer" style="display:none;">${esc(item.answer || '')}</div>
     </div>
@@ -1930,9 +1934,30 @@ function renderFaqs() {
 function toggleFaq(index) {
   const items = document.querySelectorAll('.faq-item');
   if (!items[index]) return;
-  const answer = items[index].querySelector('.faq-answer');
-  const isOpen = answer.style.display === 'block';
-  answer.style.display = isOpen ? 'none' : 'block';
+  const current = items[index];
+  const answer = current.querySelector('.faq-answer');
+  const button = current.querySelector('.faq-question');
+  const isOpen = current.classList.contains('open');
+
+  items.forEach((item, itemIndex) => {
+    const itemAnswer = item.querySelector('.faq-answer');
+    const itemButton = item.querySelector('.faq-question');
+    if (itemIndex === index) {
+      if (isOpen) {
+        item.classList.remove('open');
+        itemAnswer.style.display = 'none';
+        itemButton.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('open');
+        itemAnswer.style.display = 'block';
+        itemButton.setAttribute('aria-expanded', 'true');
+      }
+    } else {
+      item.classList.remove('open');
+      itemAnswer.style.display = 'none';
+      itemButton.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
 
 function addFaq() {
