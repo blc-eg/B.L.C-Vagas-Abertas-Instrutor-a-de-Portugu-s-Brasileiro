@@ -11,6 +11,8 @@
   <link id="font-main" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link id="font-display" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
   <link id="font-serif" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
   <style id="dynamic-styles">
     :root {
@@ -887,6 +889,17 @@ Pacote competitivo</textarea></div>
           <button class="save-btn" style="margin-top:16px;" onclick="saveContent()">💾 Salvar Conteúdo</button>
           <div class="save-ok" id="ok-content">✅ Conteúdo salvo!</div>
         </div>
+        <div class="acard">
+          <div class="acard-title">☁️ Sincronização Cloud</div>
+          <div class="acard-sub">Use Firebase Realtime Database para compartilhar alterações entre dispositivos em tempo real.</div>
+          <div class="sf"><label>Firebase API Key</label><input type="text" id="cloud-api-key" placeholder="AIza..." /></div>
+          <div class="sf"><label>Firebase Auth Domain</label><input type="text" id="cloud-auth-domain" placeholder="seuprojeto.firebaseapp.com" /></div>
+          <div class="sf"><label>Firebase Database URL</label><input type="url" id="cloud-database-url" placeholder="https://seuprojeto-default-rtdb.firebaseio.com" /></div>
+          <div class="sf"><label>Firebase Project ID</label><input type="text" id="cloud-project-id" placeholder="seuprojeto" /></div>
+          <div class="sf"><label>Firebase App ID</label><input type="text" id="cloud-app-id" placeholder="1:1234567890:web:abcdef" /></div>
+          <button class="save-btn" style="margin-top:8px;" onclick="saveCloudConfig()">💾 Salvar Configuração Cloud</button>
+          <div class="save-ok" id="ok-cloud-config" style="display:none;">✅ Cloud configurada!</div>
+        </div>
       </div>
 
       <!-- TAB PÁGINAS -->
@@ -1132,7 +1145,7 @@ const Store = {
 
 // ===== CONFIGURAÇÕES =====
 const CREDS = { user: 'admin', pass: 'blc2025' };
-let subs = JSON.parse(Store.get('blc_subs') || '[]');
+let subs = getData('subs', []);
 let pendingEmail = null;
 const DEFAULT_STATUS_CONFIG = [
   { value: 'new', label: 'New' },
@@ -1285,7 +1298,7 @@ function handleSubmit() {
   };
 
   subs.unshift(sub);
-  Store.set('blc_subs', JSON.stringify(subs));
+  setData('subs', subs);
 
   const emailConfig = getEmailConfig();
   if (emailConfig.enabled && emailConfig.sendToApplicant !== false) {
@@ -1353,7 +1366,7 @@ function updateStatus(id, newStatus) {
   const idx = subs.findIndex(s => s.id === id);
   if (idx > -1) {
     subs[idx].status = normalizeStatus(newStatus);
-    Store.set('blc_subs', JSON.stringify(subs));
+    setData('subs', subs);
     const emailConfig = getEmailConfig();
     if (emailConfig.enabled) {
       queueEmailPreview('status', subs[idx], getStatusLabel(newStatus));
@@ -1372,7 +1385,7 @@ function viewSub(id) {
 function deleteSub(id) {
   if (!confirm('Tem certeza que deseja excluir esta candidatura?')) return;
   subs = subs.filter(s => s.id !== id);
-  Store.set('blc_subs', JSON.stringify(subs));
+  setData('subs', subs);
   renderSubs();
 }
 
@@ -1389,14 +1402,124 @@ function exportCSV() {
 
 function clearSubs() {
   if (!confirm('Eliminar TODAS as candidaturas? Esta ação é irreversível.')) return;
-  subs = []; Store.set('blc_subs', JSON.stringify(subs)); renderSubs();
+  subs = [];
+  setData('subs', subs);
+  renderSubs();
 }
 
-// ===== ADMIN: APARÊNCIA =====
+// ===== CLOUD SYNC =====
+const CloudSync = {
+  enabled: false,
+  isApplyingRemote: false,
+  ref: null,
+  config: null,
+  init(config) {
+    if (!config || !config.apiKey || !config.databaseURL || !config.projectId) {
+      this.enabled = false;
+      return false;
+    }
+    if (this.enabled && JSON.stringify(this.config) === JSON.stringify(config)) return true;
+    try {
+      if (!window.firebase) {
+        console.warn('Firebase SDK não carregado');
+        this.enabled = false;
+        return false;
+      }
+      if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+      }
+      this.config = config;
+      this.ref = firebase.database().ref('/blc_site_data');
+      this.enabled = true;
+      this.subscribe();
+      return true;
+    } catch (error) {
+      console.error('CloudSync init error', error);
+      this.enabled = false;
+      return false;
+    }
+  },
+  subscribe() {
+    if (!this.enabled || !this.ref) return;
+    this.ref.off();
+    this.ref.on('value', snapshot => {
+      const remoteData = snapshot.val();
+      if (remoteData && typeof remoteData === 'object') {
+        this.applyRemoteData(remoteData);
+      }
+    });
+  },
+  applyRemoteData(remoteData) {
+    this.isApplyingRemote = true;
+    Object.entries(remoteData).forEach(([key, value]) => {
+      if (key === 'cloudConfig') return;
+      try {
+        if (key === 'subs') {
+          subs = Array.isArray(value) ? value : [];
+        }
+        setData(key, value);
+      } catch (e) {
+        console.error('CloudSync applyRemoteData error', e);
+      }
+    });
+    this.isApplyingRemote = false;
+    refreshPublicView();
+  },
+  set(key, value) {
+    if (!this.enabled || !this.ref || key === 'cloudConfig') return;
+    try {
+      this.ref.child(key).set(value).catch(e => console.error('CloudSync set failed', e));
+    } catch (error) {
+      console.error('CloudSync set error', error);
+    }
+  }
+};
+
 function getData(key, fallback) {
   try { return JSON.parse(Store.get('blc_' + key)) || fallback; } catch { return fallback; }
 }
-function setData(key, value) { return Store.set('blc_' + key, JSON.stringify(value)); }
+function setData(key, value) {
+  const saved = Store.set('blc_' + key, JSON.stringify(value));
+  if (saved && key !== 'cloudConfig' && CloudSync.enabled && !CloudSync.isApplyingRemote) {
+    CloudSync.set(key, value);
+  }
+  return saved;
+}
+
+function getCloudConfig() {
+  return getData('cloudConfig', {});
+}
+function loadCloudConfig() {
+  const config = getCloudConfig();
+  const apiKey = document.getElementById('cloud-api-key');
+  const authDomain = document.getElementById('cloud-auth-domain');
+  const databaseURL = document.getElementById('cloud-database-url');
+  const projectId = document.getElementById('cloud-project-id');
+  const appId = document.getElementById('cloud-app-id');
+  if (apiKey) apiKey.value = config.apiKey || '';
+  if (authDomain) authDomain.value = config.authDomain || '';
+  if (databaseURL) databaseURL.value = config.databaseURL || '';
+  if (projectId) projectId.value = config.projectId || '';
+  if (appId) appId.value = config.appId || '';
+  CloudSync.init(config);
+}
+function saveCloudConfig() {
+  const config = {
+    apiKey: document.getElementById('cloud-api-key')?.value.trim() || '',
+    authDomain: document.getElementById('cloud-auth-domain')?.value.trim() || '',
+    databaseURL: document.getElementById('cloud-database-url')?.value.trim() || '',
+    projectId: document.getElementById('cloud-project-id')?.value.trim() || '',
+    appId: document.getElementById('cloud-app-id')?.value.trim() || ''
+  };
+  setData('cloudConfig', config);
+  const success = CloudSync.init(config);
+  const ok = document.getElementById('ok-cloud-config');
+  if (ok) {
+    ok.style.display = success ? 'block' : 'none';
+    if (success) setTimeout(() => { if (ok) ok.style.display = 'none'; }, 3000);
+  }
+  if (!success) alert('Não foi possível inicializar a sincronização na cloud. Verifique as configurações e tente novamente.');
+}
 
 function getEmailConfig() {
   return getData('emailConfig', {
@@ -2242,7 +2365,7 @@ function applyPreferred(prefs) {
 
 // ===== ADMIN: LOGO =====
 function loadLogo() {
-  const logo = Store.get('blc_logo');
+  const logo = getData('logo', null);
   if (logo) {
     document.getElementById('logo-preview-img').src = logo;
     document.getElementById('logo-preview-img').style.display = 'block';
@@ -2260,7 +2383,7 @@ function handleLogo(e) {
     document.getElementById('logo-preview-img').src = data;
     document.getElementById('logo-preview-img').style.display = 'block';
     document.getElementById('logo-preview-init').style.display = 'none';
-    Store.set('blc_logo', data);
+    setData('logo', data);
     applyLogo(data);
     document.getElementById('ok-logo').classList.add('show');
     setTimeout(() => document.getElementById('ok-logo').classList.remove('show'), 3000);
@@ -2655,6 +2778,7 @@ function loadSavedData() {
 // ===== INIT =====
 document.getElementById('year').textContent = new Date().getFullYear();
 checkAdminAccess();
+loadCloudConfig();
 if (!document.getElementById('admin-panel').classList.contains('active')) {
   showPublic();
 }
