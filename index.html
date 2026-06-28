@@ -270,6 +270,16 @@
     .email-send-box input { flex: 2; min-width: 200px; background: #fff; border: 1.5px solid #dde4e0; padding: 10px 14px; border-radius: 8px; font-size: 13px; font-family: var(--font-main); outline: none; }
     .email-send-box button { background: var(--gold); color: var(--primary); border: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font-main); transition: var(--transition); }
     .email-send-box button:hover { background: var(--gold-light); }
+    .email-settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .email-preview-box { margin-top: 16px; margin-bottom: 16px; }
+    .email-preview-overlay { position: fixed; inset: 0; background: rgba(15,61,34,.9); z-index: 900; display: none; align-items: center; justify-content: center; padding: 24px; }
+    .email-preview-overlay.show { display: flex; }
+    .email-preview-card { background: #fff; width: min(720px, 100%); border-radius: 18px; padding: 24px; box-shadow: var(--shadow); }
+    .email-preview-card textarea { width: 100%; min-height: 220px; background: #f7f9f8; border: 1.5px solid #dde4e0; border-radius: 10px; padding: 12px 14px; font-family: var(--font-main); font-size: 13px; color: var(--ink); resize: vertical; }
+    .email-preview-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .email-preview-actions button { border: none; border-radius: 9px; padding: 10px 18px; font-weight: 600; cursor: pointer; font-family: var(--font-main); }
+    .email-preview-actions .btn-send { background: var(--primary); color: #fff; }
+    .email-preview-actions .btn-cancel { background: #f7f9f8; color: var(--ink); border: 1px solid #dde4e0; }
 
     .logo-upload { border: 2px dashed #c8d4cc; border-radius: var(--radius); padding: 28px; text-align: center; cursor: pointer; transition: var(--transition); background: #fafcfb; position: relative; }
     .logo-upload:hover { border-color: var(--primary); background: #f0f7f3; }
@@ -637,6 +647,7 @@
       <button class="adm-tab" onclick="switchTab('add',this)">➕ Adicionar</button>
       <button class="adm-tab" onclick="switchTab('logo',this)">🖼️ Logo</button>
       <button class="adm-tab" onclick="switchTab('share',this)">📤 Compartilhar</button>
+      <button class="adm-tab" onclick="switchTab('email',this)">✉️ E-mail</button>
       <button class="adm-tab" onclick="switchTab('account',this)">🔐 Conta</button>
     </div>
 
@@ -930,6 +941,35 @@ Pacote competitivo</textarea></div>
         </div>
       </div>
 
+      <!-- TAB E-MAIL -->
+      <div id="tab-email" class="adm-tab-pane">
+        <div class="acard" style="max-width:760px;">
+          <div class="acard-title">✉️ Notificações por E-mail</div>
+          <div class="acard-sub">Ative as notificações, personalize o conteúdo e visualize cada mensagem antes de enviá-la.</div>
+          <div class="email-settings-grid">
+            <div class="sf"><label>Ativar envio</label><label style="display:flex;align-items:center;gap:8px;font-size:14px;color:#0f3d22;"><input type="checkbox" id="email-enabled"> Permitir envio de e-mails ao candidato</label></div>
+            <div class="sf"><label>Enviar ao e-mail do candidato</label><label style="display:flex;align-items:center;gap:8px;font-size:14px;color:#0f3d22;"><input type="checkbox" id="email-send-to-applicant" checked> Enviar para o endereço indicado na candidatura</label></div>
+            <div class="sf"><label>Nome do remetente</label><input type="text" id="email-from-name" placeholder="Brazilian Language Center"></div>
+            <div class="sf"><label>E-mail do remetente</label><input type="email" id="email-from-address" placeholder="recruitment@exemplo.com"></div>
+            <div class="sf"><label>Service ID (EmailJS)</label><input type="text" id="emailjs-service-id" placeholder="service_xxx"></div>
+            <div class="sf"><label>Template ID (EmailJS)</label><input type="text" id="emailjs-template-id" placeholder="template_xxx"></div>
+            <div class="sf"><label>Public Key (EmailJS)</label><input type="text" id="emailjs-public-key" placeholder="public_key"></div>
+          </div>
+          <div class="sf"><label>Assunto — candidatura recebida</label><input type="text" id="email-subject-submission" value="Recebemos a sua candidatura"></div>
+          <div class="sf"><label>Mensagem — candidatura recebida</label><textarea id="email-body-submission" rows="6">Olá {{name}},\n\nRecebemos a sua candidatura para o posto de instrutor no Brazilian Language Center.\n\nA nossa equipa vai analisar a sua candidatura e entraremos em contacto em breve.\n\nObrigado,\n{{senderName}}</textarea></div>
+          <div class="sf"><label>Assunto — atualização de estado</label><input type="text" id="email-subject-status" value="Atualização da sua candidatura"></div>
+          <div class="sf"><label>Mensagem — atualização de estado</label><textarea id="email-body-status" rows="6">Olá {{name}},\n\nA sua candidatura foi atualizada para: {{statusLabel}}.\n\nObrigado,\n{{senderName}}</textarea></div>
+          <div class="email-preview-box">
+            <div class="acard-title" style="margin-bottom:8px;">🔍 Pré-visualização rápida</div>
+            <div id="email-preview-output" style="white-space:pre-wrap;font-size:13px;color:#0f3d22;line-height:1.7;background:#f7f9f8;border:1px solid #dde4e0;border-radius:10px;padding:14px;"></div>
+          </div>
+          <button class="save-btn" onclick="saveEmailConfig()">💾 Guardar Configuração</button>
+          <button class="save-btn" style="margin-left:8px;background:var(--gold);color:var(--primary);" onclick="previewEmailFromAdmin('submission')">👁 Pré-visualizar Candidatura</button>
+          <button class="save-btn" style="margin-left:8px;background:var(--gold);color:var(--primary);" onclick="previewEmailFromAdmin('status')">👁 Pré-visualizar Estado</button>
+          <div class="save-ok" id="ok-email">✅ Configuração guardada!</div>
+        </div>
+      </div>
+
       <!-- TAB CONTA -->
       <div id="tab-account" class="adm-tab-pane">
         <div class="acard" style="max-width:480px;">
@@ -949,6 +989,17 @@ Pacote competitivo</textarea></div>
   </div>
 </div>
 
+<div id="email-preview-overlay" class="email-preview-overlay">
+  <div class="email-preview-card">
+    <div class="acard-title" id="email-preview-title">Pré-visualização do e-mail</div>
+    <textarea id="email-preview-text"></textarea>
+    <div class="email-preview-actions">
+      <button class="btn-cancel" onclick="closeEmailPreview()">Cancelar</button>
+      <button class="btn-send" onclick="sendPendingEmail()">Enviar e-mail</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ===== STORAGE HELPER =====
 const Store = {
@@ -960,6 +1011,7 @@ const Store = {
 // ===== CONFIGURAÇÕES =====
 const CREDS = { user: 'admin', pass: 'blc2025' };
 let subs = JSON.parse(Store.get('blc_subs') || '[]');
+let pendingEmail = null;
 const DEFAULT_STATUS_CONFIG = [
   { value: 'new', label: 'New' },
   { value: 'in progress', label: 'In Progress' },
@@ -1057,6 +1109,7 @@ function showAdmin() {
   loadAppearance();
   loadContent();
   loadLogo();
+  loadEmailConfig();
 }
 
 function goPublic() { showPublic(); }
@@ -1096,6 +1149,11 @@ function handleSubmit() {
 
   subs.unshift(sub);
   Store.set('blc_subs', JSON.stringify(subs));
+
+  const emailConfig = getEmailConfig();
+  if (emailConfig.enabled && emailConfig.sendToApplicant !== false) {
+    queueEmailPreview('submission', sub);
+  }
 
   ['f-name','f-email','f-phone','f-why','f-linkedin','f-nationality'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = '';
@@ -1157,6 +1215,10 @@ function updateStatus(id, newStatus) {
   if (idx > -1) {
     subs[idx].status = normalizeStatus(newStatus);
     Store.set('blc_subs', JSON.stringify(subs));
+    const emailConfig = getEmailConfig();
+    if (emailConfig.enabled) {
+      queueEmailPreview('status', subs[idx], getStatusLabel(newStatus));
+    }
     renderSubs();
   }
 }
@@ -1196,6 +1258,147 @@ function getData(key, fallback) {
   try { return JSON.parse(Store.get('blc_' + key)) || fallback; } catch { return fallback; }
 }
 function setData(key, value) { Store.set('blc_' + key, JSON.stringify(value)); }
+
+function getEmailConfig() {
+  return getData('emailConfig', {
+    enabled: false,
+    sendToApplicant: true,
+    fromName: 'Brazilian Language Center',
+    fromAddress: 'recruitment.blc.eg@gmail.com',
+    serviceId: '',
+    templateId: '',
+    publicKey: '',
+    submissionSubject: 'Recebemos a sua candidatura',
+    submissionBody: 'Olá {{name}}\n\nRecebemos a sua candidatura para o posto de instrutor no Brazilian Language Center.\n\nA nossa equipa vai analisar a sua candidatura e entraremos em contacto em breve.\n\nObrigado,\n{{senderName}}',
+    statusSubject: 'Atualização da sua candidatura',
+    statusBody: 'Olá {{name}}\n\nA sua candidatura foi atualizada para: {{statusLabel}}.\n\nObrigado,\n{{senderName}}'
+  });
+}
+
+function saveEmailConfig() {
+  const config = {
+    enabled: document.getElementById('email-enabled').checked,
+    sendToApplicant: document.getElementById('email-send-to-applicant').checked,
+    fromName: document.getElementById('email-from-name').value.trim(),
+    fromAddress: document.getElementById('email-from-address').value.trim(),
+    serviceId: document.getElementById('emailjs-service-id').value.trim(),
+    templateId: document.getElementById('emailjs-template-id').value.trim(),
+    publicKey: document.getElementById('emailjs-public-key').value.trim(),
+    submissionSubject: document.getElementById('email-subject-submission').value.trim(),
+    submissionBody: document.getElementById('email-body-submission').value.trim(),
+    statusSubject: document.getElementById('email-subject-status').value.trim(),
+    statusBody: document.getElementById('email-body-status').value.trim()
+  };
+  setData('emailConfig', config);
+  document.getElementById('ok-email').classList.add('show');
+  setTimeout(() => document.getElementById('ok-email').classList.remove('show'), 3000);
+}
+
+function loadEmailConfig() {
+  const config = getEmailConfig();
+  document.getElementById('email-enabled').checked = !!config.enabled;
+  document.getElementById('email-send-to-applicant').checked = config.sendToApplicant !== false;
+  document.getElementById('email-from-name').value = config.fromName || '';
+  document.getElementById('email-from-address').value = config.fromAddress || '';
+  document.getElementById('emailjs-service-id').value = config.serviceId || '';
+  document.getElementById('emailjs-template-id').value = config.templateId || '';
+  document.getElementById('emailjs-public-key').value = config.publicKey || '';
+  document.getElementById('email-subject-submission').value = config.submissionSubject || '';
+  document.getElementById('email-body-submission').value = config.submissionBody || '';
+  document.getElementById('email-subject-status').value = config.statusSubject || '';
+  document.getElementById('email-body-status').value = config.statusBody || '';
+}
+
+function renderEmailPreview(mode, sub, statusLabel) {
+  const config = getEmailConfig();
+  const subject = mode === 'status' ? (config.statusSubject || 'Atualização da sua candidatura') : (config.submissionSubject || 'Recebemos a sua candidatura');
+  const body = mode === 'status' ? (config.statusBody || '') : (config.submissionBody || '');
+  const values = {
+    name: sub?.name || 'Candidato',
+    email: sub?.email || '',
+    phone: sub?.phone || '',
+    level: sub?.level || '',
+    exp: sub?.exp || '',
+    status: normalizeStatus(sub?.status || 'new'),
+    statusLabel: statusLabel || getStatusLabel(sub?.status || 'new'),
+    senderName: config.fromName || 'Brazilian Language Center',
+    senderAddress: config.fromAddress || '',
+    date: sub?.date || ''
+  };
+  const renderedSubject = subject.replace(/\{\{(.*?)\}\}/g, (_, key) => values[key.trim()] || '');
+  const renderedBody = body.replace(/\{\{(.*?)\}\}/g, (_, key) => values[key.trim()] || '');
+  return { subject: renderedSubject, body: renderedBody };
+}
+
+function previewEmailFromAdmin(mode) {
+  const config = getEmailConfig();
+  if (!config.enabled) { alert('Ative os envios de e-mail antes de pré-visualizar.'); return; }
+  const sub = subs[0] || { name: 'Exemplo', email: 'candidato@exemplo.com', phone: '000', level: 'B2', exp: '2 anos', status: 'new' };
+  const preview = renderEmailPreview(mode, sub, mode === 'status' ? getStatusLabel('in progress') : '');
+  document.getElementById('email-preview-title').textContent = mode === 'status' ? 'Pré-visualização — atualização de estado' : 'Pré-visualização — candidatura recebida';
+  document.getElementById('email-preview-text').value = `Assunto: ${preview.subject}\n\n${preview.body}`;
+  document.getElementById('email-preview-overlay').classList.add('show');
+}
+
+function closeEmailPreview() {
+  document.getElementById('email-preview-overlay').classList.remove('show');
+}
+
+function sendPendingEmail() {
+  if (!pendingEmail) return;
+  const config = getEmailConfig();
+  const message = document.getElementById('email-preview-text').value;
+  const [subjectLine, ...bodyLines] = message.split('\n');
+  const finalSubject = subjectLine.replace(/^Assunto:\s*/, '');
+  const finalBody = bodyLines.join('\n').trim();
+  if (!config.enabled) { alert('Os envios de e-mail estão desativados.'); return; }
+  if (!config.sendToApplicant) { alert('Envio ao e-mail do candidato está desativado.'); return; }
+  const recipient = pendingEmail.sub?.email;
+  if (!recipient) { alert('Não há e-mail do candidato para enviar.'); return; }
+  const payload = {
+    service_id: config.serviceId,
+    template_id: config.templateId,
+    user_id: config.publicKey,
+    template_params: {
+      to_email: recipient,
+      to_name: pendingEmail.sub?.name || 'Candidato',
+      from_name: config.fromName || 'Brazilian Language Center',
+      reply_to: config.fromAddress || recipient,
+      subject: finalSubject,
+      message: finalBody,
+      applicant_name: pendingEmail.sub?.name || 'Candidato',
+      applicant_email: recipient,
+      sender_name: config.fromName || 'Brazilian Language Center',
+      status_label: pendingEmail.statusLabel || ''
+    }
+  };
+  if (config.serviceId && config.templateId && config.publicKey) {
+    fetch('https://api.emailjs.com/api/v1.1/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(res => {
+      if (!res.ok) throw new Error('EmailJS failed');
+      alert('E-mail enviado com sucesso.');
+      closeEmailPreview();
+    }).catch(() => {
+      alert('Envio com EmailJS falhou. Verifique as credenciais ou use o cliente de e-mail padrão.');
+      closeEmailPreview();
+    });
+  } else {
+    const mailtoHref = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(finalBody)}`;
+    window.location.href = mailtoHref;
+    closeEmailPreview();
+  }
+}
+
+function queueEmailPreview(mode, sub, statusLabel) {
+  const preview = renderEmailPreview(mode, sub, statusLabel);
+  pendingEmail = { mode, sub, statusLabel, subject: preview.subject, body: preview.body };
+  document.getElementById('email-preview-title').textContent = mode === 'status' ? 'Pré-visualização — atualização de estado' : 'Pré-visualização — candidatura recebida';
+  document.getElementById('email-preview-text').value = `Assunto: ${preview.subject}\n\n${preview.body}`;
+  document.getElementById('email-preview-overlay').classList.add('show');
+}
 
 function loadAppearance() {
   const colors = getData('colors', { primary: '#0f3d22', gold: '#b8973a', cream: '#f9f6ef', ink: '#0d1b12' });
