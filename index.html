@@ -81,11 +81,11 @@
     .form-submit:hover { opacity: .9; transform: translateY(-2px); }
     .form-privacy { text-align: center; margin-top: 14px; font-size: 11px; color: rgba(255,255,255,.3); }
 
-    .marquee-wrap { background: var(--gold); padding: 10px 0; overflow: hidden; }
-    .marquee-track { display: flex; gap: 40px; white-space: nowrap; animation: marquee 28s linear infinite; }
+    .marquee-wrap { background: linear-gradient(90deg, rgba(255,210,85,.98), rgba(255,245,210,.95)); padding: 12px 0; overflow: hidden; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.5), 0 14px 40px rgba(0,0,0,.08); margin: 24px auto; max-width: 1200px; width: calc(100% - 40px); }
+    .marquee-track { display: flex; align-items: center; gap: 28px; white-space: nowrap; animation: marquee 26s linear infinite; will-change: transform; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .marquee-item { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--primary); }
-    .marquee-sep { color: rgba(15,61,34,.4); }
+    .marquee-item { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; background: rgba(255,255,255,.9); border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: none; color: var(--primary); box-shadow: 0 10px 24px rgba(0,0,0,.08); border: 1px solid rgba(255,255,255,.85); backdrop-filter: blur(10px); }
+    .marquee-sep { color: rgba(15,61,34,.45); opacity: .5; }
 
     .stats-band { background: var(--white); border-bottom: 1px solid rgba(0,0,0,.06); padding: 36px 40px; }
     .stats-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px; }
@@ -479,18 +479,18 @@
   <!-- MARQUEE -->
   <div class="marquee-wrap" id="marquee-wrap">
     <div class="marquee-track" id="marquee-track">
-      <span class="marquee-item">🇧🇷 Português do Brasil <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">Excelência em Ensino <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">Ambiente Internacional <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">Desenvolvimento Profissional <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">🌟 Oportunidade Única <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">Brazilian Language Center <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">🇧🇷 Português do Brasil <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">Excelência em Ensino <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">Ambiente Internacional <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">Desenvolvimento Profissional <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">🌟 Oportunidade Única <span class="marquee-sep">·</span></span>
-      <span class="marquee-item">Brazilian Language Center <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Professores nativos e qualificados <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Métodos híbridos com experiência digital <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Conteúdo cultural autêntico do Brasil <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Suporte pedagógico e formação contínua <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Ambiente acolhedor e orientado para resultados <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Aprendizagem imersiva em Português Brasileiro <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Professores nativos e qualificados <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Métodos híbridos com experiência digital <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Conteúdo cultural autêntico do Brasil <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Suporte pedagógico e formação contínua <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Ambiente acolhedor e orientado para resultados <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Aprendizagem imersiva em Português Brasileiro <span class="marquee-sep">·</span></span>
     </div>
   </div>
 
@@ -838,7 +838,7 @@ Pacote competitivo</textarea></div>
               <div class="sf"><label>Requisitos - Kicker</label><input type="text" id="edit-req-kicker" value="Requisitos"></div>
               <div class="sf"><label>Processo - Título</label><textarea id="edit-process-title" rows="2">Como Funciona o Processo?</textarea></div>
               <div class="sf"><label>Processo - Kicker</label><input type="text" id="edit-process-kicker" value="Processo de Candidatura"></div>
-              <div class="sf"><label>Marquee - Texto</label><input type="text" id="edit-marquee" value="Português do Brasil · Excelência · Ambiente Internacional"></div>
+              <div class="sf"><label>Marquee - Texto</label><input type="text" id="edit-marquee" value="Professores nativos e qualificados · Métodos híbridos com experiência digital · Conteúdo cultural autêntico do Brasil · Suporte pedagógico e formação contínua · Ambiente acolhedor e orientado para resultados · Aprendizagem imersiva em Português Brasileiro"></div>
               <div class="sf"><label>Texto da secção FAQ</label><input type="text" id="edit-faq-sub" value="Aceda às respostas mais comuns sobre o processo e as oportunidades na equipa."></div>
             </div>
             <div>
@@ -1125,9 +1125,9 @@ C1|C1 – Proficiente"></textarea></div>
 <script>
 // ===== STORAGE HELPER =====
 const Store = {
-  get(k) { try { return localStorage.getItem(k); } catch(e) { return null; } },
-  set(k, v) { try { localStorage.setItem(k, v); } catch(e) {} },
-  remove(k) { try { localStorage.removeItem(k); } catch(e) {} }
+  get(k) { try { return localStorage.getItem(k); } catch(e) { console.error('LocalStorage get error', e); return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); return true; } catch(e) { console.error('LocalStorage set error', e); return false; } },
+  remove(k) { try { localStorage.removeItem(k); return true; } catch(e) { console.error('LocalStorage remove error', e); return false; } }
 };
 
 // ===== CONFIGURAÇÕES =====
@@ -1218,6 +1218,7 @@ function saveStatusConfig() {
 function showPublic() {
   document.getElementById('view-public').classList.remove('hidden');
   document.getElementById('admin-panel').classList.remove('active');
+  refreshPublicView();
 }
 
 function showAdmin() {
@@ -1229,12 +1230,8 @@ function showAdmin() {
   renderSubs();
   renderFormFieldEditors();
   updateShareLink();
-  loadAppearance();
-  loadContent();
-  loadLogo();
-  loadPageImages();
-  loadSocialLinks();
   loadEmailConfig();
+  refreshPublicView();
 }
 
 function goPublic() { showPublic(); }
@@ -1385,7 +1382,7 @@ function clearSubs() {
 function getData(key, fallback) {
   try { return JSON.parse(Store.get('blc_' + key)) || fallback; } catch { return fallback; }
 }
-function setData(key, value) { Store.set('blc_' + key, JSON.stringify(value)); }
+function setData(key, value) { return Store.set('blc_' + key, JSON.stringify(value)); }
 
 function getEmailConfig() {
   return getData('emailConfig', {
@@ -1579,6 +1576,7 @@ function saveAppearance() {
   });
   setData('colors', colors);
   applyColors(colors);
+  refreshPublicView();
   document.getElementById('ok-appearance').classList.add('show');
   setTimeout(() => document.getElementById('ok-appearance').classList.remove('show'), 3000);
 }
@@ -1719,7 +1717,7 @@ function applyContent(content) {
     contactBody: 'A nossa equipa de recrutamento está disponível para responder a todas as suas dúvidas.',
     contactEmail: 'recruitment.blc.eg@gmail.com',
     footerCopy: 'Recrutamento: recruitment.blc.eg@gmail.com',
-    marquee: 'Português do Brasil · Excelência · Ambiente Internacional',
+    marquee: 'Professores nativos e qualificados · Métodos híbridos com experiência digital · Conteúdo cultural autêntico do Brasil · Suporte pedagógico e formação contínua · Ambiente acolhedor e orientado para resultados · Aprendizagem imersiva em Português Brasileiro',
     ctaTitle: 'Pronto para dar<br>o próximo passo?',
     ctaBody: 'Junte-se à nossa equipa de instrutores apaixonados e ajude a moldar o futuro linguístico dos nossos alunos.'
   };
@@ -1839,6 +1837,7 @@ function saveContent() {
   };
   setData('content', content);
   applyContent(content);
+  refreshPublicView();
   document.getElementById('ok-content').classList.add('show');
   setTimeout(() => document.getElementById('ok-content').classList.remove('show'), 3000);
 }
@@ -2424,13 +2423,18 @@ async function handlePageImage(event, key, imgId, previewId, placeholderId, altI
     }
     const altValue = altInput ? altInput.value.trim() : '';
     if (altInput) images[altInputId === 'hero-image-alt' ? 'heroImageAlt' : 'aboutImageAlt'] = altValue;
-    setData('pageImages', images);
+    const saved = setData('pageImages', images);
+    if (!saved) {
+      alert('Não foi possível guardar a imagem no armazenamento local. Tente reduzir o tamanho da imagem ou usar uma imagem menor.');
+      return;
+    }
     const img = document.getElementById(imgId);
     const preview = document.getElementById(previewId);
     const placeholder = document.getElementById(placeholderId);
     if (img) { img.src = data; img.style.display = 'block'; img.alt = altValue || 'Imagem carregada'; }
     if (preview) { preview.src = data; preview.style.display = 'block'; preview.alt = altValue || 'Pré-visualização'; }
     if (placeholder) placeholder.style.display = 'none';
+    refreshPublicView();
     document.getElementById('ok-page-images').classList.add('show');
     setTimeout(() => document.getElementById('ok-page-images').classList.remove('show'), 3000);
   } catch (error) {
@@ -2464,8 +2468,13 @@ function savePageImages() {
   if (aboutAlt) images.aboutImageAlt = aboutAlt.value.trim();
   images.heroImageSize = document.getElementById('hero-image-size')?.value || images.heroImageSize || 'full';
   images.aboutImageSize = document.getElementById('about-image-size')?.value || images.aboutImageSize || 'full';
-  setData('pageImages', images);
+  const saved = setData('pageImages', images);
+  if (!saved) {
+    alert('Não foi possível guardar as configurações de imagem. Tente reduzir o tamanho ou usar outra imagem.');
+    return;
+  }
   loadPageImages();
+  refreshPublicView();
   document.getElementById('ok-page-images').classList.add('show');
   setTimeout(() => document.getElementById('ok-page-images').classList.remove('show'), 3000);
 }
@@ -2542,6 +2551,7 @@ function saveSocialLinks() {
   });
   setData('socialLinks', links);
   applyFooterSocialLinks(links);
+  refreshPublicView();
   const ok = document.getElementById('ok-social-links');
   if (ok) { ok.style.display = 'block'; setTimeout(() => ok.style.display = 'none', 3000); }
 }
