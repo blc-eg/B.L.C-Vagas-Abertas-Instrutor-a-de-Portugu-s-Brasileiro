@@ -7,7 +7,7 @@
   <meta name="description" content="Brazilian Language Center — Vagas abertas para Instrutor de Português Brasileiro" />
   <meta name="robots" content="index, follow" />
 
-  <!-- Google Fonts (controladas pelo admin) -->
+  <!-- Google Fonts -->
   <link id="font-main" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link id="font-display" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
   <link id="font-serif" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
@@ -30,6 +30,7 @@
       --font-main: 'DM Sans', sans-serif;
       --font-display: 'Cormorant Garamond', serif;
       --font-serif: 'DM Serif Display', serif;
+      --transition: 0.25s ease;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: var(--font-main); background: var(--cream); color: var(--ink); line-height: 1.5; }
@@ -43,7 +44,7 @@
     .nav-logo .initials { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
     .nav-brand-text .name { font-family: var(--font-serif); font-size: 18px; color: var(--primary); }
     .nav-brand-text .sub { font-size: 11px; color: var(--ink-light); letter-spacing: .08em; text-transform: uppercase; }
-    .nav-cta { background: var(--primary); color: #fff; border: none; padding: 10px 28px; border-radius: 100px; font-weight: 600; font-size: 13px; cursor: pointer; transition: .2s; font-family: var(--font-main); }
+    .nav-cta { background: var(--primary); color: #fff; border: none; padding: 10px 28px; border-radius: 100px; font-weight: 600; font-size: 13px; cursor: pointer; transition: var(--transition); font-family: var(--font-main); }
     .nav-cta:hover { background: var(--primary-light); transform: translateY(-1px); }
 
     .hero { background: var(--primary); min-height: 90vh; display: flex; align-items: center; padding: 60px 40px; position: relative; overflow: hidden; }
@@ -67,12 +68,12 @@
     .hero-form .sub { color: rgba(255,255,255,.4); font-size: 13px; margin-bottom: 24px; }
     .form-group { margin-bottom: 14px; }
     .form-group label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 6px; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); color: #fff; padding: 12px 16px; border-radius: 10px; font-family: var(--font-main); font-size: 14px; outline: none; transition: .2s; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); color: #fff; padding: 12px 16px; border-radius: 10px; font-family: var(--font-main); font-size: 14px; outline: none; transition: var(--transition); }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: rgba(255,255,255,.1); }
     .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,.25); }
     .form-group select option { background: var(--primary); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .form-submit { width: 100%; margin-top: 8px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; color: var(--primary); padding: 16px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; transition: .2s; font-family: var(--font-main); box-shadow: 0 4px 24px rgba(184,151,58,.3); }
+    .form-submit { width: 100%; margin-top: 8px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; color: var(--primary); padding: 16px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; transition: var(--transition); font-family: var(--font-main); box-shadow: 0 4px 24px rgba(184,151,58,.3); }
     .form-submit:hover { opacity: .9; transform: translateY(-2px); }
     .form-privacy { text-align: center; margin-top: 14px; font-size: 11px; color: rgba(255,255,255,.3); }
 
@@ -96,8 +97,8 @@
     .sec-body { font-size: 16px; color: var(--ink-light); line-height: 1.8; max-width: 560px; }
 
     .bens-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
-    .ben-card { background: var(--white); border: 1px solid rgba(0,0,0,.06); border-radius: var(--radius); padding: 32px 24px; transition: .25s; position: relative; overflow: hidden; }
-    .ben-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: .25s; }
+    .ben-card { background: var(--white); border: 1px solid rgba(0,0,0,.06); border-radius: var(--radius); padding: 32px 24px; transition: var(--transition); position: relative; overflow: hidden; }
+    .ben-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: var(--transition); }
     .ben-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
     .ben-card:hover::before { transform: scaleX(1); }
     .ben-icon { font-size: 30px; margin-bottom: 16px; }
@@ -121,7 +122,7 @@
 
     .req-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
     .req-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
-    .req-li { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; background: var(--white); border: 1px solid rgba(0,0,0,.06); border-radius: var(--radius); font-size: 14px; color: var(--ink-mid); line-height: 1.6; transition: .2s; }
+    .req-li { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; background: var(--white); border: 1px solid rgba(0,0,0,.06); border-radius: var(--radius); font-size: 14px; color: var(--ink-mid); line-height: 1.6; transition: var(--transition); }
     .req-li:hover { border-color: var(--gold); box-shadow: 0 4px 12px rgba(0,0,0,.04); }
     .req-chk { flex-shrink: 0; width: 22px; height: 22px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
     .req-chk svg { width: 12px; height: 12px; stroke: #fff; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
@@ -156,7 +157,7 @@
 
     .contact-sec { background: var(--white); padding: 80px 40px; border-top: 1px solid rgba(0,0,0,.06); }
     .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .contact-link { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--cream); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.06); transition: .2s; margin-top: 12px; cursor: default; }
+    .contact-link { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--cream); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.06); transition: var(--transition); margin-top: 12px; cursor: default; }
     .contact-link:hover { border-color: var(--gold); }
     .contact-link-icon { width: 44px; height: 44px; border-radius: var(--radius); background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
     .contact-link-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); }
@@ -165,7 +166,7 @@
     .cta-box { background: var(--primary); border-radius: var(--radius); padding: 44px 36px; text-align: center; }
     .cta-box h3 { font-family: var(--font-display); font-size: 28px; font-weight: 600; color: #fff; margin-bottom: 10px; }
     .cta-box p { color: rgba(255,255,255,.55); font-size: 14px; line-height: 1.7; margin-bottom: 24px; }
-    .cta-box-btn { background: var(--gold); color: var(--primary); border: none; padding: 14px 34px; border-radius: 100px; font-weight: 700; font-size: 14px; cursor: pointer; transition: .2s; font-family: var(--font-main); }
+    .cta-box-btn { background: var(--gold); color: var(--primary); border: none; padding: 14px 34px; border-radius: 100px; font-weight: 700; font-size: 14px; cursor: pointer; transition: var(--transition); font-family: var(--font-main); }
     .cta-box-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
 
     .footer { background: var(--ink); color: rgba(255,255,255,.4); padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
@@ -193,11 +194,11 @@
     .adm-nav-logo img { width: 100%; height: 100%; object-fit: cover; display: none; }
     .adm-nav-title { font-weight: 700; font-size: 15px; }
     .adm-nav-sub { font-size: 11px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; }
-    .adm-logout { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.7); padding: 6px 18px; border-radius: 100px; font-size: 12px; font-weight: 600; cursor: pointer; transition: .2s; font-family: var(--font-main); }
+    .adm-logout { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.7); padding: 6px 18px; border-radius: 100px; font-size: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); font-family: var(--font-main); }
     .adm-logout:hover { background: rgba(255,255,255,.15); }
 
     .adm-tabs { background: #fff; border-bottom: 2px solid #dde4e0; display: flex; gap: 0; padding: 0 32px; overflow-x: auto; }
-    .adm-tab { padding: 14px 20px; font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-light); cursor: pointer; border-bottom: 2.5px solid transparent; margin-bottom: -2px; transition: .2s; background: none; border-top: none; border-left: none; border-right: none; font-family: var(--font-main); white-space: nowrap; }
+    .adm-tab { padding: 14px 20px; font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-light); cursor: pointer; border-bottom: 2.5px solid transparent; margin-bottom: -2px; transition: var(--transition); background: none; border-top: none; border-left: none; border-right: none; font-family: var(--font-main); white-space: nowrap; }
     .adm-tab.active { color: var(--primary); border-bottom-color: var(--gold); }
     .adm-tab:hover:not(.active) { color: var(--primary-light); }
 
@@ -211,12 +212,12 @@
 
     .sf { margin-bottom: 14px; }
     .sf label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 5px; }
-    .sf input, .sf select, .sf textarea { width: 100%; background: #f7f9f8; border: 1.5px solid #dde4e0; color: var(--ink); padding: 10px 14px; border-radius: 9px; font-family: var(--font-main); font-size: 14px; outline: none; transition: .2s; }
+    .sf input, .sf select, .sf textarea { width: 100%; background: #f7f9f8; border: 1.5px solid #dde4e0; color: var(--ink); padding: 10px 14px; border-radius: 9px; font-family: var(--font-main); font-size: 14px; outline: none; transition: var(--transition); }
     .sf input:focus, .sf select:focus, .sf textarea:focus { border-color: var(--primary); }
     .sf textarea { resize: vertical; min-height: 70px; }
     .sf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-    .save-btn { background: var(--primary); color: #fff; border: none; padding: 10px 24px; border-radius: 9px; font-weight: 600; font-size: 13px; cursor: pointer; transition: .2s; font-family: var(--font-main); }
+    .save-btn { background: var(--primary); color: #fff; border: none; padding: 10px 24px; border-radius: 9px; font-weight: 600; font-size: 13px; cursor: pointer; transition: var(--transition); font-family: var(--font-main); }
     .save-btn:hover { background: var(--primary-light); }
     .save-ok { display: none; font-size: 13px; color: var(--primary); margin-top: 8px; font-weight: 600; }
     .save-ok.show { display: block; }
@@ -226,10 +227,12 @@
     .sub-table-wrap { background: #fff; border-radius: var(--radius); border: 1px solid #dde4e0; overflow: hidden; }
     .sub-table { width: 100%; border-collapse: collapse; }
     .sub-table th { background: #f7f9f8; color: var(--ink-light); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; padding: 12px 14px; text-align: left; border-bottom: 1px solid #dde4e0; }
-    .sub-table td { padding: 12px 14px; font-size: 13px; color: var(--ink-mid); border-bottom: 1px solid #f4f7f5; }
-    .badge-new { display: inline-block; padding: 2px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; background: #dcf0e6; color: var(--primary); }
-    .badge-rev { background: #fff3cd; color: #856404; }
-    .badge-rej { background: #fde8e8; color: #c0392b; }
+    .sub-table td { padding: 12px 14px; font-size: 13px; color: var(--ink-mid); border-bottom: 1px solid #f4f7f5; vertical-align: middle; }
+    .badge { display: inline-block; padding: 3px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .badge-new { background: #dcf0e6; color: var(--primary); }
+    .badge-progress { background: #dbeafe; color: #1e40af; }
+    .badge-accepted { background: #d1fae5; color: #065f46; }
+    .badge-rejected { background: #fde8e8; color: #c0392b; }
 
     .sub-filter { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
     .sub-filter input, .sub-filter select { flex: 1; min-width: 160px; background: #fff; border: 1.5px solid #dde4e0; padding: 9px 14px; border-radius: 9px; font-family: var(--font-main); font-size: 13px; outline: none; }
@@ -239,22 +242,25 @@
     .sub-stat-n { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--primary); line-height: 1; }
     .sub-stat-l { font-size: 10px; color: var(--ink-light); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
     .sub-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-    .btn-export { background: var(--gold); color: var(--primary); border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; font-family: var(--font-main); transition: .2s; }
+    .btn-export { background: var(--gold); color: var(--primary); border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; font-family: var(--font-main); transition: var(--transition); }
     .btn-export:hover { background: var(--gold-light); }
-    .btn-clear { background: none; border: 1.5px solid #c0392b; color: #c0392b; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; font-family: var(--font-main); transition: .2s; }
+    .btn-clear { background: none; border: 1.5px solid #c0392b; color: #c0392b; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; font-family: var(--font-main); transition: var(--transition); }
     .btn-clear:hover { background: #c0392b; color: #fff; }
+
+    .status-select { padding: 4px 10px; border-radius: 6px; border: 1.5px solid #dde4e0; font-size: 12px; font-weight: 600; font-family: var(--font-main); background: #fff; cursor: pointer; outline: none; transition: var(--transition); }
+    .status-select:focus { border-color: var(--primary); }
 
     .copy-link-box { background: #f7f9f8; border: 1px solid #dde4e0; border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     .copy-link-box input { flex: 1; min-width: 200px; background: #fff; border: 1px solid #dde4e0; padding: 10px 14px; border-radius: 8px; font-size: 13px; font-family: var(--font-main); color: var(--ink); outline: none; }
-    .copy-link-box button { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; font-family: var(--font-main); transition: .2s; }
+    .copy-link-box button { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; font-family: var(--font-main); transition: var(--transition); }
     .copy-link-box button:hover { background: var(--primary-light); }
 
     .email-send-box { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
     .email-send-box input { flex: 2; min-width: 200px; background: #fff; border: 1.5px solid #dde4e0; padding: 10px 14px; border-radius: 8px; font-size: 13px; font-family: var(--font-main); outline: none; }
-    .email-send-box button { background: var(--gold); color: var(--primary); border: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font-main); transition: .2s; }
+    .email-send-box button { background: var(--gold); color: var(--primary); border: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font-main); transition: var(--transition); }
     .email-send-box button:hover { background: var(--gold-light); }
 
-    .logo-upload { border: 2px dashed #c8d4cc; border-radius: var(--radius); padding: 28px; text-align: center; cursor: pointer; transition: .2s; background: #fafcfb; position: relative; }
+    .logo-upload { border: 2px dashed #c8d4cc; border-radius: var(--radius); padding: 28px; text-align: center; cursor: pointer; transition: var(--transition); background: #fafcfb; position: relative; }
     .logo-upload:hover { border-color: var(--primary); background: #f0f7f3; }
     .logo-upload input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
     .logo-preview-ring { width: 80px; height: 80px; border-radius: 50%; border: 2.5px solid var(--gold); overflow: hidden; background: #eef2f0; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
@@ -270,19 +276,30 @@
 
     .font-select { width: 100%; background: #f7f9f8; border: 1.5px solid #dde4e0; padding: 10px 14px; border-radius: 9px; font-family: var(--font-main); font-size: 14px; outline: none; }
 
-    .ben-editor-list, .req-editor-list, .proc-editor-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
-    .ben-editor-item, .req-editor-item, .proc-editor-item { background: #f7f9f8; border: 1px solid #dde4e0; border-radius: 10px; padding: 12px 14px; display: grid; gap: 10px; align-items: center; }
+    .ben-editor-list, .req-editor-list, .proc-editor-list, .pref-editor-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+    .ben-editor-item, .req-editor-item, .proc-editor-item, .pref-editor-item { background: #f7f9f8; border: 1px solid #dde4e0; border-radius: 10px; padding: 12px 14px; display: grid; gap: 10px; align-items: center; }
     .ben-editor-item { grid-template-columns: 40px 1fr 1fr auto; }
     .req-editor-item { grid-template-columns: 1fr auto auto; }
     .proc-editor-item { grid-template-columns: 32px 1fr 1fr auto; }
-    .ben-editor-item input, .req-editor-item input, .proc-editor-item input { background: #fff; border: 1px solid #dde4e0; padding: 8px 10px; border-radius: 8px; font-family: var(--font-main); font-size: 13px; outline: none; width: 100%; }
-    .add-btn { background: var(--cream); border: 1.5px dashed #c8d4cc; border-radius: 10px; padding: 10px; font-size: 13px; font-weight: 600; color: var(--primary); cursor: pointer; transition: .2s; width: 100%; font-family: var(--font-main); }
+    .pref-editor-item { grid-template-columns: 1fr auto; }
+    .ben-editor-item input, .req-editor-item input, .proc-editor-item input, .pref-editor-item input { background: #fff; border: 1px solid #dde4e0; padding: 8px 10px; border-radius: 8px; font-family: var(--font-main); font-size: 13px; outline: none; width: 100%; }
+    .add-btn { background: var(--cream); border: 1.5px dashed #c8d4cc; border-radius: 10px; padding: 10px; font-size: 13px; font-weight: 600; color: var(--primary); cursor: pointer; transition: var(--transition); width: 100%; font-family: var(--font-main); }
     .add-btn:hover { border-color: var(--primary); background: #e8f3ed; }
-    .del-btn { background: none; border: none; color: #c0392b; cursor: pointer; font-size: 16px; padding: 4px; border-radius: 6px; transition: .2s; }
+    .del-btn { background: none; border: none; color: #c0392b; cursor: pointer; font-size: 16px; padding: 4px; border-radius: 6px; transition: var(--transition); }
     .del-btn:hover { background: #fde8e8; }
 
     .sub-empty { text-align: center; padding: 40px; color: var(--ink-light); font-size: 14px; }
     .sub-empty-icon { font-size: 40px; margin-bottom: 10px; opacity: .4; }
+
+    /* Status badge colors */
+    .status-badge { display: inline-block; padding: 3px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .status-badge.nova { background: #dcf0e6; color: #0f3d22; }
+    .status-badge.em-analise { background: #dbeafe; color: #1e40af; }
+    .status-badge.aceita { background: #d1fae5; color: #065f46; }
+    .status-badge.rejeitada { background: #fde8e8; color: #c0392b; }
+
+    .action-btn { background: none; border: 1px solid #dde4e0; padding: 4px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; color: var(--ink-mid); transition: var(--transition); font-family: var(--font-main); }
+    .action-btn:hover { border-color: var(--primary); color: var(--primary); }
 
     @media (max-width: 1024px) {
       .hero-inner, .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -616,6 +633,9 @@
           <div class="sub-stats">
             <div class="sub-stat"><div class="sub-stat-n" id="cnt-total">0</div><div class="sub-stat-l">Total</div></div>
             <div class="sub-stat"><div class="sub-stat-n" id="cnt-new" style="color:#0f3d22">0</div><div class="sub-stat-l">Novas</div></div>
+            <div class="sub-stat"><div class="sub-stat-n" id="cnt-progress" style="color:#1e40af">0</div><div class="sub-stat-l">Em Análise</div></div>
+            <div class="sub-stat"><div class="sub-stat-n" id="cnt-accepted" style="color:#065f46">0</div><div class="sub-stat-l">Aceitas</div></div>
+            <div class="sub-stat"><div class="sub-stat-n" id="cnt-rejected" style="color:#c0392b">0</div><div class="sub-stat-l">Rejeitadas</div></div>
           </div>
           <div class="sub-actions">
             <button class="btn-export" onclick="exportCSV()">⬇ Exportar CSV</button>
@@ -628,12 +648,13 @@
             <option value="">Todos os estados</option>
             <option value="Nova">Novas</option>
             <option value="Em Análise">Em Análise</option>
+            <option value="Aceita">Aceitas</option>
             <option value="Rejeitada">Rejeitadas</option>
           </select>
         </div>
         <div class="sub-table-wrap">
           <table class="sub-table">
-            <thead><tr><th>#</th><th>Nome</th><th>E-mail</th><th>Nível</th><th>Data</th><th>Estado</th></tr></thead>
+            <thead><tr><th>#</th><th>Nome</th><th>E-mail</th><th>Nível</th><th>Data</th><th>Estado</th><th>Ações</th></tr></thead>
             <tbody id="subs-tbody"></tbody>
           </table>
           <div id="subs-empty" class="sub-empty" style="display:none;">
@@ -856,7 +877,7 @@
 </div>
 
 <script>
-// ===== STORAGE HELPER (compatível com GitHub Pages) =====
+// ===== STORAGE HELPER =====
 const Store = {
   get(k) { try { return localStorage.getItem(k); } catch(e) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch(e) {} },
@@ -866,6 +887,7 @@ const Store = {
 // ===== CONFIGURAÇÕES =====
 const CREDS = { user: 'admin', pass: 'blc2025' };
 let subs = JSON.parse(Store.get('blc_subs') || '[]');
+const STATUS_OPTIONS = ['Nova', 'Em Análise', 'Aceita', 'Rejeitada'];
 
 // ===== FUNÇÕES DE NAVEGAÇÃO =====
 function showPublic() {
@@ -940,22 +962,59 @@ function renderSubs() {
 
   document.getElementById('cnt-total').textContent = subs.length;
   document.getElementById('cnt-new').textContent = subs.filter(s => s.status === 'Nova').length;
+  document.getElementById('cnt-progress').textContent = subs.filter(s => s.status === 'Em Análise').length;
+  document.getElementById('cnt-accepted').textContent = subs.filter(s => s.status === 'Aceita').length;
+  document.getElementById('cnt-rejected').textContent = subs.filter(s => s.status === 'Rejeitada').length;
 
   const tbody = document.getElementById('subs-tbody');
   const empty = document.getElementById('subs-empty');
   if (!filtered.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
+
   tbody.innerHTML = filtered.map((s, i) => {
-    const cls = s.status === 'Nova' ? 'badge-new' : s.status === 'Em Análise' ? 'badge-rev' : 'badge-rej';
+    const badgeClass = s.status === 'Nova' ? 'badge-new' : 
+                       s.status === 'Em Análise' ? 'badge-progress' : 
+                       s.status === 'Aceita' ? 'badge-accepted' : 'badge-rejected';
     return `<tr>
       <td style="color:#5a6b5e;font-size:12px;">${i+1}</td>
       <td style="font-weight:600;">${esc(s.name)}</td>
       <td style="font-size:12px;">${esc(s.email)}</td>
       <td><span style="font-weight:600;color:#0f3d22;">${esc(s.level)}</span></td>
       <td style="color:#5a6b5e;font-size:11px;">${esc(s.date)}</td>
-      <td><span class="${cls}">${esc(s.status)}</span></td>
+      <td>
+        <select class="status-select" data-id="${s.id}" onchange="updateStatus(${s.id}, this.value)">
+          ${STATUS_OPTIONS.map(st => `<option value="${st}" ${st === s.status ? 'selected' : ''}>${st}</option>`).join('')}
+        </select>
+      </td>
+      <td>
+        <button class="action-btn" onclick="viewSub(${s.id})">👁 Detalhes</button>
+        <button class="action-btn" style="color:#c0392b;border-color:#c0392b;" onclick="deleteSub(${s.id})">✕</button>
+      </td>
     </tr>`;
   }).join('');
+}
+
+function updateStatus(id, newStatus) {
+  const idx = subs.findIndex(s => s.id === id);
+  if (idx > -1) {
+    subs[idx].status = newStatus;
+    Store.set('blc_subs', JSON.stringify(subs));
+    renderSubs();
+  }
+}
+
+function viewSub(id) {
+  const s = subs.find(sub => sub.id === id);
+  if (!s) return;
+  const details = `Nome: ${s.name}\nE-mail: ${s.email}\nTelefone: ${s.phone}\nNível: ${s.level}\nExperiência: ${s.exp}\nLinkedIn: ${s.linkedin || '—'}\nNacionalidade: ${s.nationality || '—'}\nMotivação: ${s.why || '—'}\nData: ${s.date}\nStatus: ${s.status}`;
+  alert(details);
+}
+
+function deleteSub(id) {
+  if (!confirm('Tem certeza que deseja excluir esta candidatura?')) return;
+  subs = subs.filter(s => s.id !== id);
+  Store.set('blc_subs', JSON.stringify(subs));
+  renderSubs();
 }
 
 function exportCSV() {
