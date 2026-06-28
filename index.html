@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B.L.C · Instrutor de Português Brasileiro</title>
+  <meta name="description" content="Brazilian Language Center — Vagas abertas para Instrutor de Português Brasileiro" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Google Fonts (controladas pelo admin) -->
+  <link id="font-main" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link id="font-display" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <link id="font-serif" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style id="dynamic-styles">
+    :root {
+      --primary: #0f3d22;
+      --primary-light: #1a6640;
+      --gold: #b8973a;
+      --gold-light: #d4af5a;
+      --gold-pale: #f5edd5;
+      --cream: #f9f6ef;
+      --cream-dk: #ede8dc;
+      --ink: #0d1b12;
+      --ink-mid: #2c3e31;
+      --ink-light: #5a6b5e;
+      --white: #ffffff;
+      --radius: 12px;
+      --shadow: 0 8px 32px rgba(0,0,0,.1);
+      --font-main: 'DM Sans', sans-serif;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-serif: 'DM Serif Display', serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-main); background: var(--cream); color: var(--ink); line-height: 1.5; }
+
+    /* ===== PUBLIC PAGE ===== */
+    .top-bar { background: var(--primary); color: rgba(255,255,255,.8); text-align: center; padding: 10px 20px; font-size: 13px; font-weight: 500; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .nav { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,.06); padding: 0 40px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: 14px; }
+    .nav-logo { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--gold); background: var(--primary); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--gold); flex-shrink: 0; overflow: hidden; }
+    .nav-logo img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .nav-logo .initials { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+    .nav-brand-text .name { font-family: var(--font-serif); font-size: 18px; color: var(--primary); }
+    .nav-brand-text .sub { font-size: 11px; color: var(--ink-light); letter-spacing: .08em; text-transform: uppercase; }
+    .nav-cta { background: var(--primary); color: #fff; border: none; padding: 10px 28px; border-radius: 100px; font-weight: 600; font-size: 13px; cursor: pointer; transition: .2s; font-family: var(--font-main); }
+    .nav-cta:hover { background: var(--primary-light); transform: translateY(-1px); }
+
+    .hero { background: var(--primary); min-height: 90vh; display: flex; align-items: center; padding: 60px 40px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; width: 100%; }
+    .hero-left .kicker { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+    .hero-left .kicker-line { width: 36px; height: 2px; background: var(--gold); }
+    .hero-left .kicker-text { font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+    .hero-left h1 { font-family: var(--font-display); font-size: clamp(42px, 6vw, 72px); font-weight: 600; color: #fff; line-height: 1.08; margin-bottom: 24px; }
+    .hero-left h1 em { color: var(--gold); font-style: italic; }
+    .hero-left p { font-size: 16px; color: rgba(255,255,255,.65); line-height: 1.8; max-width: 480px; margin-bottom: 32px; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+    .hero-tags span { border: 1px solid rgba(184,151,58,.3); color: rgba(255,255,255,.8); padding: 6px 18px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+    .hero-scroll { display: inline-flex; align-items: center; gap: 12px; color: rgba(255,255,255,.4); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+    .hero-scroll-dot { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+    .hero-form { background: rgba(255,255,255,.06); border: 1px solid rgba(184,151,58,.2); backdrop-filter: blur(20px); border-radius: 22px; padding: 40px 36px; }
+    .hero-form .badge { display: inline-block; background: var(--gold); color: var(--primary); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
+    .hero-form h2 { font-family: var(--font-display); font-size: 26px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .hero-form .sub { color: rgba(255,255,255,.4); font-size: 13px; margin-bottom: 24px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); color: #fff; padding: 12px 16px; border-radius: 10px; font-family: var(--font-main); font-size: 14px; outline: none; transition: .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: rgba(255,255,255,.1); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,.25); }
+    .form-group select option { background: var(--primary); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-submit { width: 100%; margin-top: 8px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; color: var(--primary); padding: 16px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; transition: .2s; font-family: var(--font-main); box-shadow: 0 4px 24px rgba(184,151,58,.3); }
+    .form-submit:hover { opacity: .9; transform: translateY(-2px); }
+    .form-privacy { text-align: center; margin-top: 14px; font-size: 11px; color: rgba(255,255,255,.3); }
+
+    .marquee-wrap { background: var(--gold); padding: 10px 0; overflow: hidden; }
+    .marquee-track { display: flex; gap: 40px; white-space: nowrap; animation: marquee 28s linear infinite; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--primary); }
+    .marquee-sep { color: rgba(15,61,34,.4); }
+
+    .stats-band { background: var(--white); border-bottom: 1px solid rgba(0,0,0,.06); padding: 36px 40px; }
+    .stats-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .stat-item { text-align: center; padding: 0 16px; }
+    .stat-num { font-family: var(--font-display); font-size: 44px; font-weight: 700; color: var(--primary); line-height: 1; }
+    .stat-lbl { font-size: 11px; color: var(--ink-light); font-weight: 600; text-transform: uppercase; letter-spacing: .07em; margin-top: 4px; }
+    .stat-div { width: 1px; height: 48px; background: rgba(0,0,0,.08); }
+
+    .section { max-width: 1200px; margin: 0 auto; padding: 80px 40px; }
+    .sec-kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--primary-light); margin-bottom: 16px; }
+    .sec-kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .sec-h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 48px); font-weight: 600; color: var(--ink); line-height: 1.18; margin-bottom: 16px; }
+    .sec-body { font-size: 16px; color: var(--ink-light); line-height: 1.8; max-width: 560px; }
+
+    .bens-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .ben-card { background: var(--white); border: 1px solid rgba(0,0,0,.06); border-radius: var(--radius); padding: 32px 24px; transition: .25s; position: relative; overflow: hidden; }
+    .ben-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: .25s; }
+    .ben-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+    .ben-card:hover::before { transform: scaleX(1); }
+    .ben-icon { font-size: 30px; margin-bottom: 16px; }
+    .ben-title { font-family: var(--font-serif); font-size: 18px; color: var(--primary); margin-bottom: 8px; }
+    .ben-desc { font-size: 14px; color: var(--ink-light); line-height: 1.7; }
+
+    .about-sec { background: var(--primary); padding: 80px 40px; }
+    .about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-left .sec-h2 { color: #fff; }
+    .about-left .sec-body { color: rgba(255,255,255,.6); }
+    .about-left .sec-kicker { color: var(--gold); }
+    .about-pillars { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .pillar { display: flex; align-items: flex-start; gap: 16px; padding: 18px 20px; background: rgba(255,255,255,.05); border: 1px solid rgba(184,151,58,.15); border-radius: var(--radius); }
+    .pillar-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .pillar-title { font-weight: 600; color: #fff; font-size: 15px; }
+    .pillar-desc { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.6; }
+    .about-right { display: flex; flex-direction: column; gap: 18px; }
+    .about-card { background: rgba(255,255,255,.06); border: 1px solid rgba(184,151,58,.18); border-radius: var(--radius); padding: 24px 28px; }
+    .ac-num { font-family: var(--font-display); font-size: 38px; font-weight: 700; color: var(--gold); line-height: 1; }
+    .ac-lbl { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 4px; }
+
+    .req-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+    .req-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+    .req-li { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; background: var(--white); border: 1px solid rgba(0,0,0,.06); border-radius: var(--radius); font-size: 14px; color: var(--ink-mid); line-height: 1.6; transition: .2s; }
+    .req-li:hover { border-color: var(--gold); box-shadow: 0 4px 12px rgba(0,0,0,.04); }
+    .req-chk { flex-shrink: 0; width: 22px; height: 22px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .req-chk svg { width: 12px; height: 12px; stroke: #fff; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .req-highlight { background: var(--gold-pale); border-color: var(--gold); }
+    .req-highlight .req-chk { background: var(--gold); }
+    .preferred-box { background: linear-gradient(135deg, var(--primary), #1a5c35); border-radius: var(--radius); padding: 28px; margin-top: 24px; }
+    .pref-title { font-family: var(--font-serif); font-size: 18px; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .pref-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .pref-li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,.8); }
+    .pref-star { color: var(--gold); }
+
+    .lang-banner { background: var(--primary); padding: 70px 40px; text-align: center; position: relative; overflow: hidden; }
+    .lang-banner::before { content: 'B2'; position: absolute; font-family: var(--font-display); font-size: 320px; font-weight: 700; color: rgba(184,151,58,.05); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; line-height: 1; }
+    .lang-banner-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .lang-banner h2 { font-family: var(--font-display); font-size: clamp(26px, 4vw, 44px); font-weight: 600; color: #fff; line-height: 1.3; margin-bottom: 16px; }
+    .lang-banner h2 em { color: var(--gold); font-style: italic; }
+    .lang-banner p { color: rgba(255,255,255,.6); font-size: 15px; line-height: 1.8; margin-bottom: 28px; }
+    .lang-levels { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .lang-lvl { padding: 8px 22px; border-radius: 100px; font-size: 13px; font-weight: 700; border: 1.5px solid; }
+    .lang-lvl.min { border-color: var(--gold); color: var(--gold); background: rgba(184,151,58,.15); }
+    .lang-lvl.ok { border-color: rgba(184,151,58,.5); color: var(--gold-light); background: rgba(184,151,58,.1); }
+    .lang-lvl.native { border-color: var(--gold-light); color: #fff; background: rgba(184,151,58,.2); }
+
+    .process-sec { background: var(--cream-dk); padding: 80px 40px; }
+    .process-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 50px; position: relative; max-width: 1200px; margin-left: auto; margin-right: auto; }
+    .process-track::before { content: ''; position: absolute; top: 40px; left: calc(12.5% + 20px); right: calc(12.5% + 20px); height: 1px; background: linear-gradient(90deg, var(--gold), rgba(184,151,58,.2), var(--gold)); }
+    .proc-step { position: relative; z-index: 1; text-align: center; padding: 0 12px; }
+    .proc-num { width: 80px; height: 80px; border-radius: 50%; background: var(--white); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; box-shadow: 0 4px 20px rgba(184,151,58,.15); }
+    .proc-num span { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--primary); }
+    .proc-title { font-family: var(--font-serif); font-size: 16px; color: var(--primary); margin-bottom: 6px; }
+    .proc-desc { font-size: 13px; color: var(--ink-light); line-height: 1.6; }
+
+    .contact-sec { background: var(--white); padding: 80px 40px; border-top: 1px solid rgba(0,0,0,.06); }
+    .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .contact-link { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--cream); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.06); transition: .2s; margin-top: 12px; cursor: default; }
+    .contact-link:hover { border-color: var(--gold); }
+    .contact-link-icon { width: 44px; height: 44px; border-radius: var(--radius); background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .contact-link-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); }
+    .contact-link-val { font-size: 14px; font-weight: 600; color: var(--primary); }
+
+    .cta-box { background: var(--primary); border-radius: var(--radius); padding: 44px 36px; text-align: center; }
+    .cta-box h3 { font-family: var(--font-display); font-size: 28px; font-weight: 600; color: #fff; margin-bottom: 10px; }
+    .cta-box p { color: rgba(255,255,255,.55); font-size: 14px; line-height: 1.7; margin-bottom: 24px; }
+    .cta-box-btn { background: var(--gold); color: var(--primary); border: none; padding: 14px 34px; border-radius: 100px; font-weight: 700; font-size: 14px; cursor: pointer; transition: .2s; font-family: var(--font-main); }
+    .cta-box-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .footer { background: var(--ink); color: rgba(255,255,255,.4); padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer strong { color: var(--gold); }
+    .footer a { color: var(--gold); text-decoration: none; }
+
+    .suc-overlay { display: none; position: fixed; inset: 0; background: rgba(15,61,34,.92); z-index: 600; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+    .suc-overlay.show { display: flex; }
+    .suc-box { background: var(--white); border-radius: 24px; padding: 50px 44px; max-width: 400px; width: 90%; text-align: center; }
+    .suc-box .icon { font-size: 48px; margin-bottom: 20px; }
+    .suc-box h2 { font-family: var(--font-display); font-size: 30px; font-weight: 600; color: var(--primary); }
+    .suc-box p { color: var(--ink-light); font-size: 14px; line-height: 1.7; margin-top: 8px; }
+    .suc-close { margin-top: 28px; background: var(--primary); color: #fff; border: none; padding: 12px 36px; border-radius: 100px; font-weight: 600; cursor: pointer; font-family: var(--font-main); }
+
+    /* ===== ADMIN PANEL ===== */
+    #admin-panel { display: none; }
+    #admin-panel.active { display: block; }
+    #view-public { display: block; }
+    #view-public.hidden { display: none; }
+
+    .adm-wrap { min-height: 100vh; background: #eef2f0; }
+    .adm-nav { background: var(--primary); color: #fff; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 300; }
+    .adm-nav-left { display: flex; align-items: center; gap: 14px; }
+    .adm-nav-logo { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.08); font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--gold); overflow: hidden; }
+    .adm-nav-logo img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .adm-nav-title { font-weight: 700; font-size: 15px; }
+    .adm-nav-sub { font-size: 11px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; }
+    .adm-logout { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.7); padding: 6px 18px; border-radius: 100px; font-size: 12px; font-weight: 600; cursor: pointer; transition: .2s; font-family: var(--font-main); }
+    .adm-logout:hover { background: rgba(255,255,255,.15); }
+
+    .adm-tabs { background: #fff; border-bottom: 2px solid #dde4e0; display: flex; gap: 0; padding: 0 32px; overflow-x: auto; }
+    .adm-tab { padding: 14px 20px; font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-light); cursor: pointer; border-bottom: 2.5px solid transparent; margin-bottom: -2px; transition: .2s; background: none; border-top: none; border-left: none; border-right: none; font-family: var(--font-main); white-space: nowrap; }
+    .adm-tab.active { color: var(--primary); border-bottom-color: var(--gold); }
+    .adm-tab:hover:not(.active) { color: var(--primary-light); }
+
+    .adm-body { max-width: 1280px; margin: 0 auto; padding: 32px 32px; }
+    .adm-tab-pane { display: none; }
+    .adm-tab-pane.active { display: block; }
+
+    .acard { background: #fff; border-radius: var(--radius); border: 1px solid #dde4e0; padding: 24px 28px; margin-bottom: 24px; }
+    .acard-title { font-weight: 700; font-size: 14px; color: var(--primary); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #eef2f0; display: flex; align-items: center; gap: 8px; }
+    .acard-sub { font-size: 13px; color: var(--ink-light); margin-top: -10px; margin-bottom: 18px; }
+
+    .sf { margin-bottom: 14px; }
+    .sf label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 5px; }
+    .sf input, .sf select, .sf textarea { width: 100%; background: #f7f9f8; border: 1.5px solid #dde4e0; color: var(--ink); padding: 10px 14px; border-radius: 9px; font-family: var(--font-main); font-size: 14px; outline: none; transition: .2s; }
+    .sf input:focus, .sf select:focus, .sf textarea:focus { border-color: var(--primary); }
+    .sf textarea { resize: vertical; min-height: 70px; }
+    .sf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .save-btn { background: var(--primary); color: #fff; border: none; padding: 10px 24px; border-radius: 9px; font-weight: 600; font-size: 13px; cursor: pointer; transition: .2s; font-family: var(--font-main); }
+    .save-btn:hover { background: var(--primary-light); }
+    .save-ok { display: none; font-size: 13px; color: var(--primary); margin-top: 8px; font-weight: 600; }
+    .save-ok.show { display: block; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .sub-table-wrap { background: #fff; border-radius: var(--radius); border: 1px solid #dde4e0; overflow: hidden; }
+    .sub-table { width: 100%; border-collapse: collapse; }
+    .sub-table th { background: #f7f9f8; color: var(--ink-light); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; padding: 12px 14px; text-align: left; border-bottom: 1px solid #dde4e0; }
+    .sub-table td { padding: 12px 14px; font-size: 13px; color: var(--ink-mid); border-bottom: 1px solid #f4f7f5; }
+    .badge-new { display: inline-block; padding: 2px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; background: #dcf0e6; color: var(--primary); }
+    .badge-rev { background: #fff3cd; color: #856404; }
+    .badge-rej { background: #fde8e8; color: #c0392b; }
+
+    .sub-filter { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .sub-filter input, .sub-filter select { flex: 1; min-width: 160px; background: #fff; border: 1.5px solid #dde4e0; padding: 9px 14px; border-radius: 9px; font-family: var(--font-main); font-size: 13px; outline: none; }
+    .sub-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+    .sub-stats { display: flex; gap: 14px; flex-wrap: wrap; }
+    .sub-stat { background: #fff; border: 1px solid #dde4e0; border-radius: 10px; padding: 10px 18px; text-align: center; }
+    .sub-stat-n { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--primary); line-height: 1; }
+    .sub-stat-l { font-size: 10px; color: var(--ink-light); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+    .sub-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-export { background: var(--gold); color: var(--primary); border: none; padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; font-family: var(--font-main); transition: .2s; }
+    .btn-export:hover { background: var(--gold-light); }
+    .btn-clear { background: none; border: 1.5px solid #c0392b; color: #c0392b; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; font-family: var(--font-main); transition: .2s; }
+    .btn-clear:hover { background: #c0392b; color: #fff; }
+
+    .copy-link-box { background: #f7f9f8; border: 1px solid #dde4e0; border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .copy-link-box input { flex: 1; min-width: 200px; background: #fff; border: 1px solid #dde4e0; padding: 10px 14px; border-radius: 8px; font-size: 13px; font-family: var(--font-main); color: var(--ink); outline: none; }
+    .copy-link-box button { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; font-family: var(--font-main); transition: .2s; }
+    .copy-link-box button:hover { background: var(--primary-light); }
+
+    .email-send-box { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+    .email-send-box input { flex: 2; min-width: 200px; background: #fff; border: 1.5px solid #dde4e0; padding: 10px 14px; border-radius: 8px; font-size: 13px; font-family: var(--font-main); outline: none; }
+    .email-send-box button { background: var(--gold); color: var(--primary); border: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: var(--font-main); transition: .2s; }
+    .email-send-box button:hover { background: var(--gold-light); }
+
+    .logo-upload { border: 2px dashed #c8d4cc; border-radius: var(--radius); padding: 28px; text-align: center; cursor: pointer; transition: .2s; background: #fafcfb; position: relative; }
+    .logo-upload:hover { border-color: var(--primary); background: #f0f7f3; }
+    .logo-upload input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .logo-preview-ring { width: 80px; height: 80px; border-radius: 50%; border: 2.5px solid var(--gold); overflow: hidden; background: #eef2f0; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
+    .logo-preview-ring img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .logo-preview-ring .lpi { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--gold); }
+    .upload-hint { font-size: 13px; color: var(--ink-light); }
+    .upload-hint strong { color: var(--primary); }
+
+    .color-picker-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .color-picker-row label { min-width: 140px; font-size: 13px; font-weight: 600; color: var(--ink); }
+    .color-picker-row input[type="color"] { width: 50px; height: 40px; border: 1px solid #dde4e0; border-radius: 8px; cursor: pointer; padding: 2px; background: #fff; }
+    .color-picker-row input[type="text"] { flex: 1; background: #f7f9f8; border: 1.5px solid #dde4e0; padding: 8px 12px; border-radius: 8px; font-family: var(--font-main); font-size: 13px; outline: none; }
+
+    .font-select { width: 100%; background: #f7f9f8; border: 1.5px solid #dde4e0; padding: 10px 14px; border-radius: 9px; font-family: var(--font-main); font-size: 14px; outline: none; }
+
+    .ben-editor-list, .req-editor-list, .proc-editor-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+    .ben-editor-item, .req-editor-item, .proc-editor-item { background: #f7f9f8; border: 1px solid #dde4e0; border-radius: 10px; padding: 12px 14px; display: grid; gap: 10px; align-items: center; }
+    .ben-editor-item { grid-template-columns: 40px 1fr 1fr auto; }
+    .req-editor-item { grid-template-columns: 1fr auto auto; }
+    .proc-editor-item { grid-template-columns: 32px 1fr 1fr auto; }
+    .ben-editor-item input, .req-editor-item input, .proc-editor-item input { background: #fff; border: 1px solid #dde4e0; padding: 8px 10px; border-radius: 8px; font-family: var(--font-main); font-size: 13px; outline: none; width: 100%; }
+    .add-btn { background: var(--cream); border: 1.5px dashed #c8d4cc; border-radius: 10px; padding: 10px; font-size: 13px; font-weight: 600; color: var(--primary); cursor: pointer; transition: .2s; width: 100%; font-family: var(--font-main); }
+    .add-btn:hover { border-color: var(--primary); background: #e8f3ed; }
+    .del-btn { background: none; border: none; color: #c0392b; cursor: pointer; font-size: 16px; padding: 4px; border-radius: 6px; transition: .2s; }
+    .del-btn:hover { background: #fde8e8; }
+
+    .sub-empty { text-align: center; padding: 40px; color: var(--ink-light); font-size: 14px; }
+    .sub-empty-icon { font-size: 40px; margin-bottom: 10px; opacity: .4; }
+
+    @media (max-width: 1024px) {
+      .hero-inner, .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .bens-grid { grid-template-columns: 1fr 1fr; }
+      .req-layout { grid-template-columns: 1fr; gap: 30px; }
+      .process-track { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .process-track::before { display: none; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .sf-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .nav { padding: 0 16px; }
+      .hero { padding: 40px 16px; }
+      .section, .about-sec, .lang-banner, .process-sec, .contact-sec, .stats-band { padding: 40px 16px; }
+      .bens-grid { grid-template-columns: 1fr; }
+      .process-track { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; text-align: center; }
+      .stats-inner { justify-content: center; }
+      .stat-div { display: none; }
+      .adm-tabs { padding: 0 12px; }
+      .adm-body { padding: 16px; }
+      .adm-nav { padding: 0 16px; }
+      .copy-link-box { flex-direction: column; }
+      .email-send-box { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== VIEW: PUBLIC ===== -->
+<div id="view-public">
+  <!-- TOP BAR -->
+  <div class="top-bar" id="top-bar">
+    <span class="flag">🇧🇷</span>
+    <span id="announce-text">Vagas Abertas — Instrutor de Português Brasileiro</span>
+    <span class="flag">🇧🇷</span>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="nav-logo" id="nav-logo">
+        <span class="initials">B</span>
+        <img id="nav-logo-img" src="" alt="Logo" />
+      </div>
+      <div class="nav-brand-text">
+        <div class="name" id="brand-name">Brazilian Language Center</div>
+        <div class="sub" id="brand-tagline">Excelência em Educação Linguística</div>
+      </div>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('hero-form').scrollIntoView({behavior:'smooth'})">Candidatar-se →</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero-section">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="kicker">
+          <div class="kicker-line"></div>
+          <span class="kicker-text" id="hero-kicker">Brazilian Language Center</span>
+        </div>
+        <h1 id="hero-headline">Junte-se à<br>Equipa de <em>Excelência</em></h1>
+        <p id="hero-copy">Procuramos um instrutor apaixonado e profissional de Português do Brasil para integrar uma instituição de referência e transformar a vida dos nossos alunos.</p>
+        <div class="hero-tags" id="hero-tags">
+          <span>Tempo integral / parcial</span>
+          <span>Ambiente profissional</span>
+          <span>Pacote competitivo</span>
+        </div>
+        <div class="hero-scroll" onclick="document.querySelector('.stats-band').scrollIntoView({behavior:'smooth'})">
+          <div class="hero-scroll-dot">
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 2v10M3 8l4 4 4-4" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <span>Saber Mais</span>
+        </div>
+      </div>
+
+      <div class="hero-form" id="hero-form">
+        <div class="badge" id="form-badge">📋 Candidatura Aberta</div>
+        <h2 id="form-title">Candidatar-se Agora</h2>
+        <div class="sub" id="form-sub">A nossa equipa entrará em contacto em 48 horas</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:16px;">* Campos obrigatórios</div>
+
+        <div class="form-group">
+          <label>Nome Completo *</label>
+          <input type="text" id="f-name" placeholder="Introduza o seu nome completo">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>E-mail *</label>
+            <input type="email" id="f-email" placeholder="nome@email.com">
+          </div>
+          <div class="form-group">
+            <label>Telefone *</label>
+            <input type="tel" id="f-phone" placeholder="+20 ...">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Nível de Português *</label>
+          <select id="f-level">
+            <option value="" disabled selected>Selecione o nível</option>
+            <option value="B2">B2 – Utilizador Independente Avançado</option>
+            <option value="C1">C1 – Utilizador Proficiente</option>
+            <option value="C2">C2 – Domínio Pleno</option>
+            <option value="Nativo">Falante Nativo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Experiência em Ensino *</label>
+          <select id="f-exp">
+            <option value="" disabled selected>Selecione o nível</option>
+            <option>Menos de 1 ano</option>
+            <option>1 – 3 anos</option>
+            <option>3 – 5 anos</option>
+            <option>Mais de 5 anos</option>
+          </select>
+        </div>
+        <div class="form-group" id="pub-cv-field">
+          <label>Currículo / CV (PDF)</label>
+          <input type="file" accept=".pdf,.doc,.docx" id="f-cv" style="color:rgba(255,255,255,.7)">
+        </div>
+        <div class="form-group" id="pub-linkedin-field">
+          <label>Perfil LinkedIn</label>
+          <input type="url" id="f-linkedin" placeholder="https://linkedin.com/in/...">
+        </div>
+        <div class="form-group" id="pub-nationality-field">
+          <label>Nacionalidade</label>
+          <input type="text" id="f-nationality" placeholder="Ex: Brasileira, Portuguesa...">
+        </div>
+        <div class="form-group">
+          <label>Motivação — Por que quer integrar a nossa equipa?</label>
+          <textarea id="f-why" placeholder="Conte-nos brevemente sobre si e a sua motivação..."></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit()">Enviar Candidatura →</button>
+        <div class="form-privacy">🔒 Os seus dados são tratados de forma confidencial</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" id="marquee-wrap">
+    <div class="marquee-track" id="marquee-track">
+      <span class="marquee-item">🇧🇷 Português do Brasil <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Excelência em Ensino <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Ambiente Internacional <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Desenvolvimento Profissional <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">🌟 Oportunidade Única <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Brazilian Language Center <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">🇧🇷 Português do Brasil <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Excelência em Ensino <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Ambiente Internacional <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Desenvolvimento Profissional <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">🌟 Oportunidade Única <span class="marquee-sep">·</span></span>
+      <span class="marquee-item">Brazilian Language Center <span class="marquee-sep">·</span></span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-band" id="stats-band">
+    <div class="stats-inner" id="stats-inner">
+      <div class="stat-item"><div class="stat-num" id="stat1-num">12+</div><div class="stat-lbl" id="stat1-lbl">Anos de Excelência</div></div>
+      <div class="stat-div"></div>
+      <div class="stat-item"><div class="stat-num" id="stat2-num">5.000+</div><div class="stat-lbl" id="stat2-lbl">Alunos Formados</div></div>
+      <div class="stat-div"></div>
+      <div class="stat-item"><div class="stat-num" id="stat3-num">98%</div><div class="stat-lbl" id="stat3-lbl">Satisfação dos Alunos</div></div>
+      <div class="stat-div"></div>
+      <div class="stat-item"><div class="stat-num" id="stat4-num">#1</div><div class="stat-lbl" id="stat4-lbl">Centro de Português na Região</div></div>
+    </div>
+  </div>
+
+  <!-- BENEFÍCIOS -->
+  <div class="section" id="benefits-section">
+    <div class="sec-kicker"><div class="sec-kicker-dot"></div> <span id="benefits-kicker">Por Que Nós</span></div>
+    <h2 class="sec-h2" id="benefits-title">Um Ambiente de Trabalho<br>à Altura das Suas Ambições</h2>
+    <p class="sec-body" id="benefits-sub">No Brazilian Language Center, acreditamos que o instrutor é o coração da instituição.</p>
+    <div class="bens-grid" id="benefits-grid">
+      <div class="ben-card"><div class="ben-icon">💰</div><div class="ben-title">Salário Competitivo</div><div class="ben-desc">Pacote financeiro atrativo com bónus de desempenho trimestrais.</div></div>
+      <div class="ben-card"><div class="ben-icon">📚</div><div class="ben-title">Desenvolvimento Contínuo</div><div class="ben-desc">Programas de formação regulares e workshops com especialistas do Brasil.</div></div>
+      <div class="ben-card"><div class="ben-icon">🕐</div><div class="ben-title">Horário Flexível</div><div class="ben-desc">Horários adaptados ao seu estilo de vida, seja integral ou parcial.</div></div>
+      <div class="ben-card"><div class="ben-icon">🌐</div><div class="ben-title">Ambiente Internacional</div><div class="ben-desc">Contacto direto com parceiros e especialistas globais.</div></div>
+      <div class="ben-card"><div class="ben-icon">🏆</div><div class="ben-title">Reconhecimento e Prémios</div><div class="ben-desc">Prémios anuais que celebram a excelência da equipa.</div></div>
+      <div class="ben-card"><div class="ben-icon">📈</div><div class="ben-title">Carreira Clara</div><div class="ben-desc">Progressão de instrutor a supervisor académico e além.</div></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-sec" id="about-section">
+    <div class="about-inner">
+      <div class="about-left">
+        <div class="sec-kicker"><div class="sec-kicker-dot"></div> <span id="about-kicker">A Nossa Missão</span></div>
+        <h2 class="sec-h2" id="about-title">Formamos Pontes<br>entre Culturas</h2>
+        <p class="sec-body" id="about-body">O Brazilian Language Center nasceu com uma missão clara: tornar o Português do Brasil acessível, vivo e apaixonante.</p>
+        <div class="about-pillars" id="about-pillars">
+          <div class="pillar"><div class="pillar-icon">🎯</div><div><div class="pillar-title">Ensino orientado para resultados</div><div class="pillar-desc">Metodologias modernas que colocam o aluno no centro da aprendizagem</div></div></div>
+          <div class="pillar"><div class="pillar-icon">🤝</div><div><div class="pillar-title">Comunidade e pertença</div><div class="pillar-desc">Uma equipa unida por valores comuns de respeito, crescimento e paixão</div></div></div>
+          <div class="pillar"><div class="pillar-icon">🌱</div><div><div class="pillar-title">Crescimento mútuo</div><div class="pillar-desc">Investimos em cada instrutor como parceiro de longo prazo da nossa visão</div></div></div>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="about-card"><div class="ac-num" id="ac1-num">+15</div><div class="ac-lbl" id="ac1-lbl">Instrutores qualificados na equipa atual</div></div>
+        <div class="about-card"><div class="ac-num" id="ac2-num">+30</div><div class="ac-lbl" id="ac2-lbl">Cursos e programas disponíveis</div></div>
+        <div class="about-card"><div class="ac-num" id="ac3-num">Cairo</div><div class="ac-lbl" id="ac3-lbl">Sede principal — com presença online global</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUISITOS -->
+  <div class="section" id="requirements-section">
+    <div class="req-layout">
+      <div>
+        <div class="sec-kicker"><div class="sec-kicker-dot"></div> <span id="req-kicker">Requisitos</span></div>
+        <h2 class="sec-h2" id="req-title">O Que Procuramos</h2>
+        <p class="sec-body" id="req-body">Não procuramos apenas um professor — procuramos alguém com uma missão.</p>
+        <div class="preferred-box" id="preferred-box">
+          <div class="pref-title">⭐ Candidatos Preferenciais</div>
+          <ul class="pref-list" id="pref-list">
+            <li class="pref-li"><span class="pref-star">★</span> Falantes nativos de Português Brasileiro</li>
+            <li class="pref-li"><span class="pref-star">★</span> Certificação CELTA, DELTA ou equivalente</li>
+            <li class="pref-li"><span class="pref-star">★</span> Experiência com ensino online/híbrido</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="req-list" id="req-list">
+        <li class="req-li req-highlight"><span class="req-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span> Proficiência em Português Brasileiro no mínimo nível B2 (nativos são muito bem-vindos)</li>
+        <li class="req-li"><span class="req-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span> Experiência prévia em ensino de línguas (mínimo 1 ano) ou certificação reconhecida</li>
+        <li class="req-li"><span class="req-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span> Habilitação académica em Educação, Linguística ou área relacionada</li>
+        <li class="req-li"><span class="req-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span> Excelentes capacidades de comunicação e adaptação a diferentes perfis de alunos</li>
+        <li class="req-li"><span class="req-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span> Familiaridade com métodos de ensino modernos e aprendizagem digital/híbrida</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- LANG BANNER -->
+  <section class="lang-banner" id="lang-banner">
+    <div class="lang-banner-inner">
+      <h2 id="lang-title">Aceitamos candidatos a partir do <em>nível B2</em><br>em Português Brasileiro</h2>
+      <p id="lang-body">Seja você falante nativo ou alguém que conquistou o domínio do idioma com dedicação — há um lugar para si na nossa equipa. O que importa é a paixão pelo ensino e a capacidade de inspirar os alunos.</p>
+      <div class="lang-levels">
+        <span class="lang-lvl min">B2 — Mínimo Aceite</span>
+        <span class="lang-lvl ok">C1 — Preferencial</span>
+        <span class="lang-lvl native">Nativo — Altamente Valorizado</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section class="process-sec" id="process-section">
+    <div style="max-width:1200px;margin:0 auto;text-align:center">
+      <div class="sec-kicker" style="justify-content:center"><div class="sec-kicker-dot"></div> <span id="process-kicker">Processo de Candidatura</span> <div class="sec-kicker-dot"></div></div>
+      <h2 class="sec-h2" style="text-align:center" id="process-title">Como Funciona<br>o Processo?</h2>
+    </div>
+    <div class="process-track" id="process-track">
+      <div class="proc-step"><div class="proc-num"><span>1</span></div><div class="proc-title">Envie a Candidatura</div><div class="proc-desc">Preencha o formulário com os seus dados e experiência</div></div>
+      <div class="proc-step"><div class="proc-num"><span>2</span></div><div class="proc-title">Análise Inicial</div><div class="proc-desc">A nossa equipa analisa a sua candidatura em 48 horas úteis</div></div>
+      <div class="proc-step"><div class="proc-num"><span>3</span></div><div class="proc-title">Entrevista</div><div class="proc-desc">Conversa em Português e reunião com a Diretora Académica</div></div>
+      <div class="proc-step"><div class="proc-num"><span>4</span></div><div class="proc-title">Bem-vindo(a)!</div><div class="proc-desc">Integração na equipa e início do programa de integração</div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-sec" id="contact-section">
+    <div class="contact-inner">
+      <div>
+        <div class="sec-kicker"><div class="sec-kicker-dot"></div> <span id="contact-kicker">Contacto</span></div>
+        <h2 class="sec-h2" id="contact-title">Tem Alguma<br>Questão?</h2>
+        <p class="sec-body" id="contact-body">A nossa equipa de recrutamento está disponível para responder a todas as suas dúvidas.</p>
+        <div class="contact-link">
+          <div class="contact-link-icon">✉️</div>
+          <div><div class="contact-link-label">E-mail</div><div class="contact-link-val" id="contact-email">recruitment.blc.eg@gmail.com</div></div>
+        </div>
+      </div>
+      <div class="cta-box">
+        <h3 id="cta-title">Pronto para dar<br>o próximo passo?</h3>
+        <p id="cta-body">Junte-se à nossa equipa de instrutores apaixonados e ajude a moldar o futuro linguístico dos nossos alunos.</p>
+        <button class="cta-box-btn" onclick="document.getElementById('hero-form').scrollIntoView({behavior:'smooth'})">Candidatar-se Agora →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div>
+      <div>© <span id="year"></span> <strong id="footer-name">Brazilian Language Center</strong> · Todos os direitos reservados</div>
+      <div style="font-size:12px;margin-top:4px;">Recrutamento: <strong><a href="mailto:recruitment.blc.eg@gmail.com" id="footer-email-link">recruitment.blc.eg@gmail.com</a></strong></div>
+    </div>
+  </footer>
+
+  <!-- SUCCESS OVERLAY -->
+  <div class="suc-overlay" id="suc-overlay">
+    <div class="suc-box">
+      <div class="icon">🇧🇷</div>
+      <h2>Candidatura Enviada!</h2>
+      <p>Obrigado pelo seu interesse em integrar o <strong>Brazilian Language Center</strong>. A nossa equipa entrará em contacto em 48 horas úteis.</p>
+      <button class="suc-close" onclick="document.getElementById('suc-overlay').classList.remove('show')">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div id="admin-panel">
+  <div class="adm-wrap">
+    <nav class="adm-nav">
+      <div class="adm-nav-left">
+        <div class="adm-nav-logo" id="adm-logo">
+          <span>B</span>
+          <img id="adm-logo-img" src="" alt="Logo" />
+        </div>
+        <div><div class="adm-nav-title">Painel de Administração</div><div class="adm-nav-sub">Controle Total da Página</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button onclick="goPublic()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">👁 Ver Página</button>
+        <button class="adm-logout" onclick="logoutAdmin()">Sair</button>
+      </div>
+    </nav>
+
+    <div class="adm-tabs">
+      <button class="adm-tab active" onclick="switchTab('subs',this)">📋 Candidaturas</button>
+      <button class="adm-tab" onclick="switchTab('appearance',this)">🎨 Aparência</button>
+      <button class="adm-tab" onclick="switchTab('content',this)">📝 Conteúdo</button>
+      <button class="adm-tab" onclick="switchTab('add',this)">➕ Adicionar</button>
+      <button class="adm-tab" onclick="switchTab('logo',this)">🖼️ Logo</button>
+      <button class="adm-tab" onclick="switchTab('share',this)">📤 Compartilhar</button>
+      <button class="adm-tab" onclick="switchTab('account',this)">🔐 Conta</button>
+    </div>
+
+    <div class="adm-body">
+      <!-- TAB CANDIDATURAS -->
+      <div id="tab-subs" class="adm-tab-pane active">
+        <div class="sub-header">
+          <div class="sub-stats">
+            <div class="sub-stat"><div class="sub-stat-n" id="cnt-total">0</div><div class="sub-stat-l">Total</div></div>
+            <div class="sub-stat"><div class="sub-stat-n" id="cnt-new" style="color:#0f3d22">0</div><div class="sub-stat-l">Novas</div></div>
+          </div>
+          <div class="sub-actions">
+            <button class="btn-export" onclick="exportCSV()">⬇ Exportar CSV</button>
+            <button class="btn-clear" onclick="clearSubs()">🗑 Limpar Tudo</button>
+          </div>
+        </div>
+        <div class="sub-filter">
+          <input id="sub-search" type="text" placeholder="🔍 Pesquisar por nome, email..." oninput="renderSubs()">
+          <select id="sub-filter-status" onchange="renderSubs()" style="background:#fff;border:1.5px solid #dde4e0;padding:9px 14px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;">
+            <option value="">Todos os estados</option>
+            <option value="Nova">Novas</option>
+            <option value="Em Análise">Em Análise</option>
+            <option value="Rejeitada">Rejeitadas</option>
+          </select>
+        </div>
+        <div class="sub-table-wrap">
+          <table class="sub-table">
+            <thead><tr><th>#</th><th>Nome</th><th>E-mail</th><th>Nível</th><th>Data</th><th>Estado</th></tr></thead>
+            <tbody id="subs-tbody"></tbody>
+          </table>
+          <div id="subs-empty" class="sub-empty" style="display:none;">
+            <div class="sub-empty-icon">📭</div>
+            <div>Nenhuma candidatura ainda. Compartilhe o link para começar a receber.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB APARÊNCIA -->
+      <div id="tab-appearance" class="adm-tab-pane">
+        <div class="acard">
+          <div class="acard-title">🎨 Cores</div>
+          <div class="color-picker-row">
+            <label>Cor Primária</label>
+            <input type="color" id="color-primary" value="#0f3d22" onchange="updateColor('primary', this.value)">
+            <input type="text" id="color-primary-text" value="#0f3d22" onchange="updateColor('primary', this.value)">
+          </div>
+          <div class="color-picker-row">
+            <label>Cor Dourada</label>
+            <input type="color" id="color-gold" value="#b8973a" onchange="updateColor('gold', this.value)">
+            <input type="text" id="color-gold-text" value="#b8973a" onchange="updateColor('gold', this.value)">
+          </div>
+          <div class="color-picker-row">
+            <label>Fundo (Creme)</label>
+            <input type="color" id="color-cream" value="#f9f6ef" onchange="updateColor('cream', this.value)">
+            <input type="text" id="color-cream-text" value="#f9f6ef" onchange="updateColor('cream', this.value)">
+          </div>
+          <div class="color-picker-row">
+            <label>Texto Principal</label>
+            <input type="color" id="color-ink" value="#0d1b12" onchange="updateColor('ink', this.value)">
+            <input type="text" id="color-ink-text" value="#0d1b12" onchange="updateColor('ink', this.value)">
+          </div>
+          <button class="save-btn" onclick="saveAppearance()">💾 Salvar Cores</button>
+          <div class="save-ok" id="ok-appearance">✅ Cores salvas!</div>
+        </div>
+
+        <div class="acard">
+          <div class="acard-title">🔤 Fontes</div>
+          <div class="sf-row">
+            <div class="sf">
+              <label>Fonte Principal</label>
+              <select class="font-select" id="font-main-select" onchange="updateFont('main', this.value)">
+                <option value="DM Sans">DM Sans</option>
+                <option value="Inter">Inter</option>
+                <option value="Roboto">Roboto</option>
+                <option value="Open Sans">Open Sans</option>
+                <option value="Lato">Lato</option>
+                <option value="Poppins">Poppins</option>
+                <option value="Nunito">Nunito</option>
+                <option value="Montserrat">Montserrat</option>
+                <option value="Raleway">Raleway</option>
+                <option value="Work Sans">Work Sans</option>
+              </select>
+            </div>
+            <div class="sf">
+              <label>Fonte de Destaque</label>
+              <select class="font-select" id="font-display-select" onchange="updateFont('display', this.value)">
+                <option value="Cormorant Garamond">Cormorant Garamond</option>
+                <option value="Playfair Display">Playfair Display</option>
+                <option value="Merriweather">Merriweather</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Bodoni Moda">Bodoni Moda</option>
+                <option value="Abril Fatface">Abril Fatface</option>
+              </select>
+            </div>
+          </div>
+          <div class="sf" style="margin-top:10px;">
+            <label>Tamanho dos Títulos</label>
+            <input type="range" id="font-size-titles" min="28" max="72" value="48" oninput="updateFontSize('titles', this.value)">
+            <span id="font-size-titles-label">48px</span>
+          </div>
+          <div class="sf">
+            <label>Tamanho do Texto Corpo</label>
+            <input type="range" id="font-size-body" min="12" max="24" value="16" oninput="updateFontSize('body', this.value)">
+            <span id="font-size-body-label">16px</span>
+          </div>
+          <button class="save-btn" onclick="saveFonts()">💾 Salvar Fontes</button>
+          <div class="save-ok" id="ok-fonts">✅ Fontes salvas!</div>
+        </div>
+      </div>
+
+      <!-- TAB CONTEÚDO -->
+      <div id="tab-content" class="adm-tab-pane">
+        <div class="acard">
+          <div class="acard-title">📝 Editar Textos da Página</div>
+          <div class="grid-2">
+            <div>
+              <div class="sf"><label>Anúncio (Topo)</label><input type="text" id="edit-announce" value="Vagas Abertas — Instrutor de Português Brasileiro"></div>
+              <div class="sf"><label>Nome da Marca</label><input type="text" id="edit-brand-name" value="Brazilian Language Center"></div>
+              <div class="sf"><label>Slogan</label><input type="text" id="edit-brand-tagline" value="Excelência em Educação Linguística"></div>
+              <div class="sf"><label>Hero - Kicker</label><input type="text" id="edit-hero-kicker" value="Brazilian Language Center"></div>
+              <div class="sf"><label>Hero - Título</label><textarea id="edit-hero-headline" rows="2">Junte-se à Equipa de Excelência</textarea></div>
+              <div class="sf"><label>Hero - Descrição</label><textarea id="edit-hero-copy" rows="3">Procuramos um instrutor apaixonado e profissional de Português do Brasil para integrar uma instituição de referência e transformar a vida dos nossos alunos.</textarea></div>
+            </div>
+            <div>
+              <div class="sf"><label>Formulário - Badge</label><input type="text" id="edit-form-badge" value="📋 Candidatura Aberta"></div>
+              <div class="sf"><label>Formulário - Título</label><input type="text" id="edit-form-title" value="Candidatar-se Agora"></div>
+              <div class="sf"><label>Formulário - Subtítulo</label><input type="text" id="edit-form-sub" value="A nossa equipa entrará em contacto em 48 horas"></div>
+              <div class="sf"><label>Benefícios - Título</label><textarea id="edit-benefits-title" rows="2">Um Ambiente de Trabalho à Altura das Suas Ambições</textarea></div>
+              <div class="sf"><label>Benefícios - Subtítulo</label><textarea id="edit-benefits-sub" rows="2">No Brazilian Language Center, acreditamos que o instrutor é o coração da instituição.</textarea></div>
+              <div class="sf"><label>Missão - Título</label><textarea id="edit-about-title" rows="2">Formamos Pontes entre Culturas</textarea></div>
+              <div class="sf"><label>Missão - Descrição</label><textarea id="edit-about-body" rows="2">O Brazilian Language Center nasceu com uma missão clara: tornar o Português do Brasil acessível, vivo e apaixonante.</textarea></div>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-top:12px;">
+            <div>
+              <div class="sf"><label>Requisitos - Título</label><input type="text" id="edit-req-title" value="O Que Procuramos"></div>
+              <div class="sf"><label>Requisitos - Subtítulo</label><textarea id="edit-req-body" rows="2">Não procuramos apenas um professor — procuramos alguém com uma missão.</textarea></div>
+              <div class="sf"><label>Processo - Título</label><textarea id="edit-process-title" rows="2">Como Funciona o Processo?</textarea></div>
+            </div>
+            <div>
+              <div class="sf"><label>Contacto - Título</label><textarea id="edit-contact-title" rows="2">Tem Alguma Questão?</textarea></div>
+              <div class="sf"><label>Contacto - Descrição</label><textarea id="edit-contact-body" rows="2">A nossa equipa de recrutamento está disponível para responder a todas as suas dúvidas.</textarea></div>
+              <div class="sf"><label>E-mail de Contacto</label><input type="email" id="edit-contact-email" value="recruitment.blc.eg@gmail.com"></div>
+            </div>
+          </div>
+          <button class="save-btn" style="margin-top:16px;" onclick="saveContent()">💾 Salvar Conteúdo</button>
+          <div class="save-ok" id="ok-content">✅ Conteúdo salvo!</div>
+        </div>
+      </div>
+
+      <!-- TAB ADICIONAR -->
+      <div id="tab-add" class="adm-tab-pane">
+        <div class="acard">
+          <div class="acard-title">➕ Adicionar Benefício</div>
+          <div class="sf-row">
+            <div class="sf"><label>Ícone (emoji)</label><input type="text" id="new-ben-icon" placeholder="💰" value="✅"></div>
+            <div class="sf"><label>Título</label><input type="text" id="new-ben-title" placeholder="Título do benefício"></div>
+          </div>
+          <div class="sf"><label>Descrição</label><textarea id="new-ben-desc" rows="2" placeholder="Descrição do benefício"></textarea></div>
+          <button class="save-btn" onclick="addBenefit()">➕ Adicionar Benefício</button>
+          <div class="save-ok" id="ok-add-ben">✅ Benefício adicionado!</div>
+        </div>
+
+        <div class="acard">
+          <div class="acard-title">➕ Adicionar Requisito</div>
+          <div class="sf"><label>Texto do Requisito</label><input type="text" id="new-req-text" placeholder="Digite o requisito"></div>
+          <div style="margin-bottom:12px;">
+            <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;">
+              <input type="checkbox" id="new-req-highlight"> Destacar (fundo dourado)
+            </label>
+          </div>
+          <button class="save-btn" onclick="addRequirement()">➕ Adicionar Requisito</button>
+          <div class="save-ok" id="ok-add-req">✅ Requisito adicionado!</div>
+        </div>
+
+        <div class="acard">
+          <div class="acard-title">➕ Adicionar Etapa do Processo</div>
+          <div class="sf-row">
+            <div class="sf"><label>Título da Etapa</label><input type="text" id="new-proc-title" placeholder="Título da etapa"></div>
+            <div class="sf"><label>Descrição</label><input type="text" id="new-proc-desc" placeholder="Descrição da etapa"></div>
+          </div>
+          <button class="save-btn" onclick="addProcessStep()">➕ Adicionar Etapa</button>
+          <div class="save-ok" id="ok-add-proc">✅ Etapa adicionada!</div>
+        </div>
+
+        <div class="acard">
+          <div class="acard-title">⭐ Adicionar Candidato Preferencial</div>
+          <div class="sf"><label>Texto</label><input type="text" id="new-pref-text" placeholder="Ex: Experiência com ensino online"></div>
+          <button class="save-btn" onclick="addPreferred()">⭐ Adicionar</button>
+          <div class="save-ok" id="ok-add-pref">✅ Adicionado!</div>
+        </div>
+      </div>
+
+      <!-- TAB LOGO -->
+      <div id="tab-logo" class="adm-tab-pane">
+        <div class="acard">
+          <div class="acard-title">🖼️ Logótipo</div>
+          <div class="logo-upload" onclick="document.getElementById('logo-file').click()">
+            <input type="file" id="logo-file" accept="image/*" onchange="handleLogo(event)">
+            <div class="logo-preview-ring" id="logo-preview">
+              <img id="logo-preview-img" src="" alt="Logo">
+              <span class="lpi" id="logo-preview-init">B</span>
+            </div>
+            <div class="upload-hint">Clique para enviar o logótipo<br><strong>PNG, JPG, SVG</strong> — recomendado 300×300px</div>
+          </div>
+          <button class="save-btn" style="margin-top:16px;" onclick="saveLogo()">💾 Salvar Logo</button>
+          <div class="save-ok" id="ok-logo">✅ Logo salvo!</div>
+        </div>
+      </div>
+
+      <!-- TAB COMPARTILHAR -->
+      <div id="tab-share" class="adm-tab-pane">
+        <div class="acard">
+          <div class="acard-title">📤 Compartilhar Link</div>
+          <div class="copy-link-box">
+            <input type="text" id="share-link" value="" readonly>
+            <button onclick="copyLink()">📋 Copiar Link</button>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="acard-title" style="border-top:1px solid #eef2f0;padding-top:16px;font-size:13px;">✉️ Enviar por E-mail</div>
+            <div class="email-send-box">
+              <input type="email" id="email-to" placeholder="E-mail do candidato">
+              <button onclick="sendEmailLink()">Enviar Link</button>
+            </div>
+            <div id="email-status" style="font-size:13px;margin-top:8px;color:#0f3d22;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB CONTA -->
+      <div id="tab-account" class="adm-tab-pane">
+        <div class="acard" style="max-width:480px;">
+          <div class="acard-title">🔐 Alterar Credenciais</div>
+          <div class="sf"><label>Palavra-passe Atual</label><input type="password" id="acc-cur" placeholder="Palavra-passe atual"></div>
+          <div class="sf"><label>Novo Utilizador</label><input type="text" id="acc-user" placeholder="Novo nome de utilizador"></div>
+          <div class="sf"><label>Nova Palavra-passe</label><input type="password" id="acc-new" placeholder="Nova palavra-passe (mín. 6 caracteres)"></div>
+          <div class="sf"><label>Confirmar Nova Palavra-passe</label><input type="password" id="acc-conf" placeholder="Repetir nova palavra-passe"></div>
+          <button class="save-btn" onclick="changeCreds()">Atualizar Credenciais</button>
+          <div class="save-ok" id="ok-acc" style="display:block;margin-top:8px;"></div>
+        </div>
+        <div style="margin-top:16px;font-size:12px;color:#5a6b5e;padding:14px 18px;background:#fff;border-radius:10px;border:1px solid #dde4e0;max-width:480px;">
+          ⚠️ Credenciais padrão: <strong>admin / blc2025</strong> — Altere após o primeiro acesso.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== STORAGE HELPER (compatível com GitHub Pages) =====
+const Store = {
+  get(k) { try { return localStorage.getItem(k); } catch(e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch(e) {} },
+  remove(k) { try { localStorage.removeItem(k); } catch(e) {} }
+};
+
+// ===== CONFIGURAÇÕES =====
+const CREDS = { user: 'admin', pass: 'blc2025' };
+let subs = JSON.parse(Store.get('blc_subs') || '[]');
+
+// ===== FUNÇÕES DE NAVEGAÇÃO =====
+function showPublic() {
+  document.getElementById('view-public').classList.remove('hidden');
+  document.getElementById('admin-panel').classList.remove('active');
+}
+
+function showAdmin() {
+  document.getElementById('view-public').classList.add('hidden');
+  document.getElementById('admin-panel').classList.add('active');
+  renderSubs();
+  updateShareLink();
+  loadAppearance();
+  loadContent();
+  loadLogo();
+}
+
+function goPublic() { showPublic(); }
+function logoutAdmin() { showPublic(); window.history.replaceState({}, document.title, window.location.pathname); }
+
+// ===== CHECK ADMIN ACCESS =====
+function checkAdminAccess() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('admin') === 'true') {
+    showAdmin();
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+}
+
+// ===== SUBMISSÃO DO FORMULÁRIO =====
+function handleSubmit() {
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const level = document.getElementById('f-level').value;
+  const exp = document.getElementById('f-exp').value;
+  const why = document.getElementById('f-why').value.trim();
+
+  if (!name || !email || !phone || !level || !exp) {
+    alert('Por favor, preencha todos os campos obrigatórios (*).');
+    return;
+  }
+
+  const sub = {
+    id: Date.now(),
+    date: new Date().toLocaleString('pt-PT'),
+    name, email, phone, level, exp, why,
+    linkedin: document.getElementById('f-linkedin').value || '',
+    nationality: document.getElementById('f-nationality').value || '',
+    status: 'Nova'
+  };
+
+  subs.unshift(sub);
+  Store.set('blc_subs', JSON.stringify(subs));
+
+  ['f-name','f-email','f-phone','f-why','f-linkedin','f-nationality'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  ['f-level','f-exp'].forEach(id => { const el = document.getElementById(id); if (el) el.selectedIndex = 0; });
+  document.getElementById('f-cv').value = '';
+
+  document.getElementById('suc-overlay').classList.add('show');
+}
+
+// ===== ADMIN: CANDIDATURAS =====
+function renderSubs() {
+  const search = (document.getElementById('sub-search')?.value || '').toLowerCase();
+  const statusFilter = document.getElementById('sub-filter-status')?.value || '';
+  let filtered = subs;
+  if (search) filtered = filtered.filter(s => (s.name + s.email + s.level + s.exp).toLowerCase().includes(search));
+  if (statusFilter) filtered = filtered.filter(s => s.status === statusFilter);
+
+  document.getElementById('cnt-total').textContent = subs.length;
+  document.getElementById('cnt-new').textContent = subs.filter(s => s.status === 'Nova').length;
+
+  const tbody = document.getElementById('subs-tbody');
+  const empty = document.getElementById('subs-empty');
+  if (!filtered.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  tbody.innerHTML = filtered.map((s, i) => {
+    const cls = s.status === 'Nova' ? 'badge-new' : s.status === 'Em Análise' ? 'badge-rev' : 'badge-rej';
+    return `<tr>
+      <td style="color:#5a6b5e;font-size:12px;">${i+1}</td>
+      <td style="font-weight:600;">${esc(s.name)}</td>
+      <td style="font-size:12px;">${esc(s.email)}</td>
+      <td><span style="font-weight:600;color:#0f3d22;">${esc(s.level)}</span></td>
+      <td style="color:#5a6b5e;font-size:11px;">${esc(s.date)}</td>
+      <td><span class="${cls}">${esc(s.status)}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function exportCSV() {
+  if (!subs.length) { alert('Sem candidaturas para exportar.'); return; }
+  const hdr = ['#','Nome','E-mail','Telefone','Nível PT','Experiência','LinkedIn','Nacionalidade','Motivação','Data','Estado'];
+  const rows = subs.map((s,i) => [i+1, s.name, s.email, s.phone, s.level, s.exp, s.linkedin||'', s.nationality||'', s.why||'', s.date, s.status].map(v => `"${String(v||'').replace(/"/g,'""')}"`).join(','));
+  const csv = [hdr.join(','), ...rows].join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' }));
+  a.download = 'BLC_Candidaturas_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+function clearSubs() {
+  if (!confirm('Eliminar TODAS as candidaturas? Esta ação é irreversível.')) return;
+  subs = []; Store.set('blc_subs', JSON.stringify(subs)); renderSubs();
+}
+
+// ===== ADMIN: APARÊNCIA =====
+function getData(key, fallback) {
+  try { return JSON.parse(Store.get('blc_' + key)) || fallback; } catch { return fallback; }
+}
+function setData(key, value) { Store.set('blc_' + key, JSON.stringify(value)); }
+
+function loadAppearance() {
+  const colors = getData('colors', { primary: '#0f3d22', gold: '#b8973a', cream: '#f9f6ef', ink: '#0d1b12' });
+  ['primary', 'gold', 'cream', 'ink'].forEach(c => {
+    const el = document.getElementById('color-' + c);
+    const text = document.getElementById('color-' + c + '-text');
+    if (el) el.value = colors[c];
+    if (text) text.value = colors[c];
+  });
+  const fonts = getData('fonts', { main: 'DM Sans', display: 'Cormorant Garamond' });
+  document.getElementById('font-main-select').value = fonts.main;
+  document.getElementById('font-display-select').value = fonts.display;
+  const sizes = getData('fontSizes', { titles: 48, body: 16 });
+  document.getElementById('font-size-titles').value = sizes.titles;
+  document.getElementById('font-size-titles-label').textContent = sizes.titles + 'px';
+  document.getElementById('font-size-body').value = sizes.body;
+  document.getElementById('font-size-body-label').textContent = sizes.body + 'px';
+  applyColors(colors);
+  applyFonts(fonts);
+  applyFontSizes(sizes);
+}
+
+function applyColors(colors) {
+  const root = document.documentElement;
+  root.style.setProperty('--primary', colors.primary);
+  root.style.setProperty('--gold', colors.gold);
+  root.style.setProperty('--cream', colors.cream);
+  root.style.setProperty('--ink', colors.ink);
+  root.style.setProperty('--gold-light', colors.gold + 'cc');
+  root.style.setProperty('--gold-pale', colors.gold + '33');
+  root.style.setProperty('--cream-dk', colors.cream + 'cc');
+  root.style.setProperty('--ink-mid', colors.ink + '99');
+  root.style.setProperty('--ink-light', colors.ink + '66');
+}
+
+function updateColor(name, value) {
+  const text = document.getElementById('color-' + name + '-text');
+  if (text) text.value = value;
+  const colors = getData('colors', {});
+  colors[name] = value;
+  setData('colors', colors);
+  applyColors(colors);
+}
+
+function saveAppearance() {
+  const colors = {};
+  ['primary', 'gold', 'cream', 'ink'].forEach(c => {
+    const el = document.getElementById('color-' + c);
+    if (el) colors[c] = el.value;
+  });
+  setData('colors', colors);
+  applyColors(colors);
+  document.getElementById('ok-appearance').classList.add('show');
+  setTimeout(() => document.getElementById('ok-appearance').classList.remove('show'), 3000);
+}
+
+function updateFont(type, value) {
+  const fonts = getData('fonts', { main: 'DM Sans', display: 'Cormorant Garamond' });
+  fonts[type] = value;
+  setData('fonts', fonts);
+  applyFonts(fonts);
+}
+
+function updateFontSize(type, value) {
+  const label = document.getElementById('font-size-' + type + '-label');
+  if (label) label.textContent = value + 'px';
+  const sizes = getData('fontSizes', { titles: 48, body: 16 });
+  sizes[type] = parseInt(value);
+  setData('fontSizes', sizes);
+  applyFontSizes(sizes);
+}
+
+function applyFonts(fonts) {
+  const root = document.documentElement;
+  root.style.setProperty('--font-main', `'${fonts.main}', sans-serif`);
+  root.style.setProperty('--font-display', `'${fonts.display}', serif`);
+  root.style.setProperty('--font-serif', `'${fonts.display}', serif`);
+  const mainFont = document.getElementById('font-main');
+  const displayFont = document.getElementById('font-display');
+  const serifFont = document.getElementById('font-serif');
+  if (mainFont) mainFont.href = `https://fonts.googleapis.com/css2?family=${fonts.main.replace(/ /g, '+')}:wght@300;400;500;600;700&display=swap`;
+  if (displayFont) displayFont.href = `https://fonts.googleapis.com/css2?family=${fonts.display.replace(/ /g, '+')}:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap`;
+  if (serifFont) serifFont.href = `https://fonts.googleapis.com/css2?family=${fonts.display.replace(/ /g, '+')}:ital@0;1&display=swap`;
+}
+
+function applyFontSizes(sizes) {
+  document.querySelectorAll('.sec-h2, .hero-left h1, .lang-banner h2, .cta-box h3').forEach(el => {
+    el.style.fontSize = sizes.titles + 'px';
+  });
+  document.querySelectorAll('.sec-body, .hero-left p, .lang-banner p, .contact-link-val, .ben-desc, .req-li, .proc-desc, .pillar-desc').forEach(el => {
+    el.style.fontSize = sizes.body + 'px';
+  });
+}
+
+function saveFonts() {
+  const fonts = {
+    main: document.getElementById('font-main-select').value,
+    display: document.getElementById('font-display-select').value
+  };
+  setData('fonts', fonts);
+  applyFonts(fonts);
+  const sizes = {
+    titles: parseInt(document.getElementById('font-size-titles').value),
+    body: parseInt(document.getElementById('font-size-body').value)
+  };
+  setData('fontSizes', sizes);
+  applyFontSizes(sizes);
+  document.getElementById('ok-fonts').classList.add('show');
+  setTimeout(() => document.getElementById('ok-fonts').classList.remove('show'), 3000);
+}
+
+// ===== ADMIN: CONTEÚDO =====
+function loadContent() {
+  const content = getData('content', {});
+  const map = {
+    'edit-announce': 'announce',
+    'edit-brand-name': 'brandName',
+    'edit-brand-tagline': 'brandTagline',
+    'edit-hero-kicker': 'heroKicker',
+    'edit-hero-headline': 'heroHeadline',
+    'edit-hero-copy': 'heroCopy',
+    'edit-form-badge': 'formBadge',
+    'edit-form-title': 'formTitle',
+    'edit-form-sub': 'formSub',
+    'edit-benefits-title': 'benefitsTitle',
+    'edit-benefits-sub': 'benefitsSub',
+    'edit-about-title': 'aboutTitle',
+    'edit-about-body': 'aboutBody',
+    'edit-req-title': 'reqTitle',
+    'edit-req-body': 'reqBody',
+    'edit-process-title': 'processTitle',
+    'edit-contact-title': 'contactTitle',
+    'edit-contact-body': 'contactBody',
+    'edit-contact-email': 'contactEmail'
+  };
+  Object.entries(map).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el && content[key] !== undefined) el.value = content[key];
+  });
+  applyContent(content);
+}
+
+function applyContent(content) {
+  if (content.announce) document.getElementById('announce-text').textContent = content.announce;
+  if (content.brandName) document.getElementById('brand-name').textContent = content.brandName;
+  if (content.brandTagline) document.getElementById('brand-tagline').textContent = content.brandTagline;
+  if (content.heroKicker) document.getElementById('hero-kicker').textContent = content.heroKicker;
+  if (content.heroHeadline) document.getElementById('hero-headline').innerHTML = content.heroHeadline.replace(/\n/g, '<br>');
+  if (content.heroCopy) document.getElementById('hero-copy').textContent = content.heroCopy;
+  if (content.formBadge) document.getElementById('form-badge').textContent = content.formBadge;
+  if (content.formTitle) document.getElementById('form-title').textContent = content.formTitle;
+  if (content.formSub) document.getElementById('form-sub').textContent = content.formSub;
+  if (content.benefitsTitle) document.getElementById('benefits-title').innerHTML = content.benefitsTitle.replace(/\n/g, '<br>');
+  if (content.benefitsSub) document.getElementById('benefits-sub').textContent = content.benefitsSub;
+  if (content.aboutTitle) document.getElementById('about-title').innerHTML = content.aboutTitle.replace(/\n/g, '<br>');
+  if (content.aboutBody) document.getElementById('about-body').textContent = content.aboutBody;
+  if (content.reqTitle) document.getElementById('req-title').textContent = content.reqTitle;
+  if (content.reqBody) document.getElementById('req-body').textContent = content.reqBody;
+  if (content.processTitle) document.getElementById('process-title').innerHTML = content.processTitle.replace(/\n/g, '<br>');
+  if (content.contactTitle) document.getElementById('contact-title').innerHTML = content.contactTitle.replace(/\n/g, '<br>');
+  if (content.contactBody) document.getElementById('contact-body').textContent = content.contactBody;
+  if (content.contactEmail) {
+    document.getElementById('contact-email').textContent = content.contactEmail;
+    document.getElementById('footer-email-link').textContent = content.contactEmail;
+    document.getElementById('footer-email-link').href = 'mailto:' + content.contactEmail;
+  }
+}
+
+function saveContent() {
+  const content = {};
+  const map = {
+    'edit-announce': 'announce',
+    'edit-brand-name': 'brandName',
+    'edit-brand-tagline': 'brandTagline',
+    'edit-hero-kicker': 'heroKicker',
+    'edit-hero-headline': 'heroHeadline',
+    'edit-hero-copy': 'heroCopy',
+    'edit-form-badge': 'formBadge',
+    'edit-form-title': 'formTitle',
+    'edit-form-sub': 'formSub',
+    'edit-benefits-title': 'benefitsTitle',
+    'edit-benefits-sub': 'benefitsSub',
+    'edit-about-title': 'aboutTitle',
+    'edit-about-body': 'aboutBody',
+    'edit-req-title': 'reqTitle',
+    'edit-req-body': 'reqBody',
+    'edit-process-title': 'processTitle',
+    'edit-contact-title': 'contactTitle',
+    'edit-contact-body': 'contactBody',
+    'edit-contact-email': 'contactEmail'
+  };
+  Object.entries(map).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el) content[key] = el.value;
+  });
+  setData('content', content);
+  applyContent(content);
+  document.getElementById('ok-content').classList.add('show');
+  setTimeout(() => document.getElementById('ok-content').classList.remove('show'), 3000);
+}
+
+// ===== ADMIN: ADICIONAR ITENS =====
+function addBenefit() {
+  const icon = document.getElementById('new-ben-icon').value || '✅';
+  const title = document.getElementById('new-ben-title').value.trim();
+  const desc = document.getElementById('new-ben-desc').value.trim();
+  if (!title || !desc) { alert('Preencha título e descrição.'); return; }
+  const benefits = getData('benefits', []);
+  benefits.push({ icon, title, desc });
+  setData('benefits', benefits);
+  applyBenefits(benefits);
+  document.getElementById('new-ben-icon').value = '✅';
+  document.getElementById('new-ben-title').value = '';
+  document.getElementById('new-ben-desc').value = '';
+  document.getElementById('ok-add-ben').classList.add('show');
+  setTimeout(() => document.getElementById('ok-add-ben').classList.remove('show'), 3000);
+}
+
+function addRequirement() {
+  const text = document.getElementById('new-req-text').value.trim();
+  if (!text) { alert('Digite o texto do requisito.'); return; }
+  const highlight = document.getElementById('new-req-highlight').checked;
+  const reqs = getData('requirements', []);
+  reqs.push({ text, highlight });
+  setData('requirements', reqs);
+  applyRequirements(reqs);
+  document.getElementById('new-req-text').value = '';
+  document.getElementById('new-req-highlight').checked = false;
+  document.getElementById('ok-add-req').classList.add('show');
+  setTimeout(() => document.getElementById('ok-add-req').classList.remove('show'), 3000);
+}
+
+function addProcessStep() {
+  const title = document.getElementById('new-proc-title').value.trim();
+  const desc = document.getElementById('new-proc-desc').value.trim();
+  if (!title || !desc) { alert('Preencha título e descrição.'); return; }
+  const steps = getData('processSteps', []);
+  steps.push({ title, desc });
+  setData('processSteps', steps);
+  applyProcessSteps(steps);
+  document.getElementById('new-proc-title').value = '';
+  document.getElementById('new-proc-desc').value = '';
+  document.getElementById('ok-add-proc').classList.add('show');
+  setTimeout(() => document.getElementById('ok-add-proc').classList.remove('show'), 3000);
+}
+
+function addPreferred() {
+  const text = document.getElementById('new-pref-text').value.trim();
+  if (!text) { alert('Digite o texto.'); return; }
+  const prefs = getData('preferred', []);
+  prefs.push(text);
+  setData('preferred', prefs);
+  applyPreferred(prefs);
+  document.getElementById('new-pref-text').value = '';
+  document.getElementById('ok-add-pref').classList.add('show');
+  setTimeout(() => document.getElementById('ok-add-pref').classList.remove('show'), 3000);
+}
+
+function applyBenefits(benefits) {
+  const grid = document.getElementById('benefits-grid');
+  if (!benefits || !benefits.length) return;
+  grid.innerHTML = benefits.map(b => `
+    <div class="ben-card">
+      <div class="ben-icon">${b.icon || '✅'}</div>
+      <div class="ben-title">${esc(b.title)}</div>
+      <div class="ben-desc">${esc(b.desc)}</div>
+    </div>
+  `).join('');
+}
+
+function applyRequirements(reqs) {
+  const list = document.getElementById('req-list');
+  if (!reqs || !reqs.length) return;
+  list.innerHTML = reqs.map(r => `
+    <li class="req-li${r.highlight ? ' req-highlight' : ''}">
+      <span class="req-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+      ${esc(r.text)}
+    </li>
+  `).join('');
+}
+
+function applyProcessSteps(steps) {
+  const track = document.getElementById('process-track');
+  if (!steps || !steps.length) return;
+  track.innerHTML = steps.map((s, i) => `
+    <div class="proc-step">
+      <div class="proc-num"><span>${i+1}</span></div>
+      <div class="proc-title">${esc(s.title)}</div>
+      <div class="proc-desc">${esc(s.desc)}</div>
+    </div>
+  `).join('');
+}
+
+function applyPreferred(prefs) {
+  const list = document.getElementById('pref-list');
+  if (!prefs || !prefs.length) return;
+  list.innerHTML = prefs.map(p => `
+    <li class="pref-li"><span class="pref-star">★</span> ${esc(p)}</li>
+  `).join('');
+}
+
+// ===== ADMIN: LOGO =====
+function loadLogo() {
+  const logo = Store.get('blc_logo');
+  if (logo) {
+    document.getElementById('logo-preview-img').src = logo;
+    document.getElementById('logo-preview-img').style.display = 'block';
+    document.getElementById('logo-preview-init').style.display = 'none';
+    applyLogo(logo);
+  }
+}
+
+function handleLogo(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const data = ev.target.result;
+    document.getElementById('logo-preview-img').src = data;
+    document.getElementById('logo-preview-img').style.display = 'block';
+    document.getElementById('logo-preview-init').style.display = 'none';
+    Store.set('blc_logo', data);
+    applyLogo(data);
+    document.getElementById('ok-logo').classList.add('show');
+    setTimeout(() => document.getElementById('ok-logo').classList.remove('show'), 3000);
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveLogo() {
+  const logo = Store.get('blc_logo');
+  if (logo) applyLogo(logo);
+  document.getElementById('ok-logo').classList.add('show');
+  setTimeout(() => document.getElementById('ok-logo').classList.remove('show'), 3000);
+}
+
+function applyLogo(logo) {
+  ['nav-logo-img', 'adm-logo-img'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.src = logo; el.style.display = 'block'; }
+  });
+  document.querySelectorAll('.nav-logo .initials, .adm-logo span').forEach(el => el.style.display = 'none');
+}
+
+// ===== ADMIN: COMPARTILHAR =====
+function updateShareLink() {
+  const url = window.location.href.split('?')[0].split('#')[0];
+  const el = document.getElementById('share-link');
+  if (el) el.value = url;
+}
+
+function copyLink() {
+  const input = document.getElementById('share-link');
+  const url = input.value;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => alert('Link copiado!')).catch(() => {
+      input.select(); document.execCommand('copy'); alert('Link copiado!');
+    });
+  } else {
+    input.select(); document.execCommand('copy'); alert('Link copiado para a área de transferência!');
+  }
+}
+
+function sendEmailLink() {
+  const to = document.getElementById('email-to').value.trim();
+  if (!to) { alert('Insira um e-mail destinatário.'); return; }
+  const link = document.getElementById('share-link').value;
+  const subject = encodeURIComponent('Vaga: Instrutor de Português Brasileiro');
+  const body = encodeURIComponent(`Olá,\n\nConvidamos você a se candidatar à nossa vaga de Instrutor de Português Brasileiro.\n\nAcesse o link abaixo para preencher o formulário:\n${link}\n\nAtenciosamente,\nBrazilian Language Center`);
+  window.open(`mailto:${to}?subject=${subject}&body=${body}`);
+  document.getElementById('email-status').textContent = '📧 E-mail aberto no seu cliente.';
+  setTimeout(() => document.getElementById('email-status').textContent = '', 5000);
+}
+
+// ===== ADMIN: CONTA =====
+function changeCreds() {
+  const cur = document.getElementById('acc-cur').value;
+  const newU = document.getElementById('acc-user').value.trim();
+  const newP = document.getElementById('acc-new').value;
+  const conf = document.getElementById('acc-conf').value;
+  const msg = document.getElementById('ok-acc');
+
+  if (cur !== CREDS.pass) {
+    msg.style.color = '#c0392b';
+    msg.textContent = 'Palavra-passe atual incorreta.';
+    return;
+  }
+  if (newP && newP.length < 6) {
+    msg.style.color = '#c0392b';
+    msg.textContent = 'A nova palavra-passe deve ter pelo menos 6 caracteres.';
+    return;
+  }
+  if (newP && newP !== conf) {
+    msg.style.color = '#c0392b';
+    msg.textContent = 'As palavras-passe não coincidem.';
+    return;
+  }
+  if (newU) CREDS.user = newU;
+  if (newP) CREDS.pass = newP;
+  msg.style.color = '#0f3d22';
+  msg.textContent = '✅ Credenciais atualizadas!';
+  document.getElementById('acc-cur').value = '';
+  document.getElementById('acc-new').value = '';
+  document.getElementById('acc-conf').value = '';
+  if (!newU) document.getElementById('acc-user').value = CREDS.user;
+  setTimeout(() => msg.textContent = '', 4000);
+}
+
+// ===== TAB SWITCHER =====
+function switchTab(name, btn) {
+  document.querySelectorAll('.adm-tab-pane').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.adm-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (name === 'subs') renderSubs();
+}
+
+// ===== UTIL =====
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ===== CARREGAR DADOS SALVOS =====
+function loadSavedData() {
+  const benefits = getData('benefits', [
+    { icon: '💰', title: 'Salário Competitivo', desc: 'Pacote financeiro atrativo com bónus de desempenho trimestrais.' },
+    { icon: '📚', title: 'Desenvolvimento Contínuo', desc: 'Programas de formação regulares e workshops com especialistas do Brasil.' },
+    { icon: '🕐', title: 'Horário Flexível', desc: 'Horários adaptados ao seu estilo de vida, seja integral ou parcial.' },
+    { icon: '🌐', title: 'Ambiente Internacional', desc: 'Contacto direto com parceiros e especialistas globais.' },
+    { icon: '🏆', title: 'Reconhecimento e Prémios', desc: 'Prémios anuais que celebram a excelência da equipa.' },
+    { icon: '📈', title: 'Carreira Clara', desc: 'Progressão de instrutor a supervisor académico e além.' }
+  ]);
+  if (benefits.length) applyBenefits(benefits);
+
+  const reqs = getData('requirements', [
+    { text: 'Proficiência em Português Brasileiro no mínimo nível B2 (nativos são muito bem-vindos)', highlight: true },
+    { text: 'Experiência prévia em ensino de línguas (mínimo 1 ano) ou certificação reconhecida', highlight: false },
+    { text: 'Habilitação académica em Educação, Linguística ou área relacionada', highlight: false },
+    { text: 'Excelentes capacidades de comunicação e adaptação a diferentes perfis de alunos', highlight: false },
+    { text: 'Familiaridade com métodos de ensino modernos e aprendizagem digital/híbrida', highlight: false }
+  ]);
+  if (reqs.length) applyRequirements(reqs);
+
+  const steps = getData('processSteps', [
+    { title: 'Envie a Candidatura', desc: 'Preencha o formulário com os seus dados e experiência' },
+    { title: 'Análise Inicial', desc: 'A nossa equipa analisa a sua candidatura em 48 horas úteis' },
+    { title: 'Entrevista', desc: 'Conversa em Português e reunião com a Diretora Académica' },
+    { title: 'Bem-vindo(a)!', desc: 'Integração na equipa e início do programa de integração' }
+  ]);
+  if (steps.length) applyProcessSteps(steps);
+
+  const prefs = getData('preferred', [
+    'Falantes nativos de Português Brasileiro',
+    'Certificação CELTA, DELTA ou equivalente',
+    'Experiência com ensino online/híbrido'
+  ]);
+  if (prefs.length) applyPreferred(prefs);
+
+  loadAppearance();
+  loadContent();
+  loadLogo();
+}
+
+// ===== INIT =====
+document.getElementById('year').textContent = new Date().getFullYear();
+checkAdminAccess();
+if (!document.getElementById('admin-panel').classList.contains('active')) {
+  showPublic();
+}
+updateShareLink();
+loadSavedData();
+
+document.getElementById('suc-overlay').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('show');
+});
+</script>
+</body>
+</html>
