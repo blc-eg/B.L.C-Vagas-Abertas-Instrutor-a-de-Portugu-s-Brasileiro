@@ -1214,6 +1214,20 @@ function saveStatusConfig() {
   renderSubs();
 }
 
+function refreshPublicView() {
+  loadAppearance();
+  loadContent();
+  loadLogo();
+  loadPageImages();
+  loadSocialLinks();
+  applyBenefits(getData('benefits', []));
+  applyRequirements(getData('requirements', []));
+  applyProcessSteps(getData('processSteps', []));
+  applyPreferred(getData('preferred', []));
+  renderFaqs();
+  renderCustomSections();
+}
+
 // ===== FUNÇÕES DE NAVEGAÇÃO =====
 function showPublic() {
   document.getElementById('view-public').classList.remove('hidden');
