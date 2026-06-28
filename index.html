@@ -299,8 +299,11 @@
     .form-field-editor-item .row.small { grid-template-columns: 1fr 1fr 1fr; }
     .form-field-editor-item .meta { display: flex; justify-content: space-between; align-items: center; color: var(--primary); font-size: 13px; font-weight: 600; }
     .form-field-editor-item button { background: none; border: 1px solid #c0392b; color: #c0392b; padding: 6px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; }
-    .image-upload-card { background: #f7f9f8; border: 1px solid #dde4e0; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
-    .image-upload-card img { width: 100%; max-height: 180px; object-fit: cover; border-radius: 10px; display: none; margin-top: 10px; }
+    .image-upload-card { background: #f7f9f8; border: 1px solid #dde4e0; border-radius: 10px; padding: 16px; margin-bottom: 12px; display: grid; gap: 10px; }
+    .image-upload-card .image-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .image-upload-card .image-action-btn { background: none; border: 1px solid #c0392b; color: #c0392b; padding: 7px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; }
+    .image-upload-card img { width: 100%; max-height: 220px; object-fit: cover; border-radius: 10px; display: none; margin-top: 4px; border: 1px solid #dde4e0; background: #fff; }
+    .image-upload-card input[type="text"] { width: 100%; background: #fff; border: 1.5px solid #dde4e0; padding: 8px 10px; border-radius: 8px; font-family: var(--font-main); font-size: 13px; outline: none; }
     .logo-upload:hover { border-color: var(--primary); background: #f0f7f3; }
     .logo-upload input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
     .logo-preview-ring { width: 80px; height: 80px; border-radius: 50%; border: 2.5px solid var(--gold); overflow: hidden; background: #eef2f0; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
@@ -933,14 +936,23 @@ Pacote competitivo</textarea></div>
         </div>
         <div class="acard">
           <div class="acard-title">🖼️ Imagens da página</div>
+          <div class="acard-sub">Carregue imagens para o hero, a secção da missão e outras áreas principais da página. As imagens são guardadas no navegador e aparecem imediatamente no site.</div>
           <div class="image-upload-card">
-            <div class="acard-sub" style="margin:0 0 8px;">Imagem do hero (lado direito)</div>
-            <input type="file" id="hero-image-file" accept="image/*" onchange="handlePageImage(event, 'heroImage', 'hero-image', 'hero-image-placeholder')">
+            <div class="image-head">
+              <div class="acard-sub" style="margin:0;">Imagem do hero (lado direito)</div>
+              <button type="button" class="image-action-btn" onclick="removePageImage('heroImage', 'hero-image', 'hero-image-preview', 'hero-image-placeholder', 'hero-image-alt')">🗑 Remover</button>
+            </div>
+            <input type="file" id="hero-image-file" accept="image/*" onchange="handlePageImage(event, 'heroImage', 'hero-image', 'hero-image-preview', 'hero-image-placeholder', 'hero-image-alt')">
+            <div class="sf" style="margin:0;"><label>Texto alternativo</label><input type="text" id="hero-image-alt" placeholder="Descrição da imagem" oninput="savePageImageAlt('heroImageAlt', 'hero-image-alt')"></div>
             <img id="hero-image-preview" src="" alt="Pré-visualização hero">
           </div>
           <div class="image-upload-card">
-            <div class="acard-sub" style="margin:0 0 8px;">Imagem da secção Sobre / Missão</div>
-            <input type="file" id="about-image-file" accept="image/*" onchange="handlePageImage(event, 'aboutImage', 'about-image', 'about-image-placeholder')">
+            <div class="image-head">
+              <div class="acard-sub" style="margin:0;">Imagem da secção Sobre / Missão</div>
+              <button type="button" class="image-action-btn" onclick="removePageImage('aboutImage', 'about-image', 'about-image-preview', 'about-image-placeholder', 'about-image-alt')">🗑 Remover</button>
+            </div>
+            <input type="file" id="about-image-file" accept="image/*" onchange="handlePageImage(event, 'aboutImage', 'about-image', 'about-image-preview', 'about-image-placeholder', 'about-image-alt')">
+            <div class="sf" style="margin:0;"><label>Texto alternativo</label><input type="text" id="about-image-alt" placeholder="Descrição da imagem" oninput="savePageImageAlt('aboutImageAlt', 'about-image-alt')"></div>
             <img id="about-image-preview" src="" alt="Pré-visualização missão">
           </div>
           <button class="save-btn" onclick="savePageImages()">💾 Guardar Imagens</button>
@@ -2262,43 +2274,111 @@ function loadPageImages() {
   const heroImg = document.getElementById('hero-image');
   const heroPreview = document.getElementById('hero-image-preview');
   const heroPlaceholder = document.getElementById('hero-image-placeholder');
+  const heroAlt = document.getElementById('hero-image-alt');
   const aboutImg = document.getElementById('about-image');
   const aboutPreview = document.getElementById('about-image-preview');
   const aboutPlaceholder = document.getElementById('about-image-placeholder');
+  const aboutAlt = document.getElementById('about-image-alt');
   if (images.heroImage) {
-    if (heroImg) { heroImg.src = images.heroImage; heroImg.style.display = 'block'; }
-    if (heroPreview) { heroPreview.src = images.heroImage; heroPreview.style.display = 'block'; }
+    if (heroImg) { heroImg.src = images.heroImage; heroImg.style.display = 'block'; heroImg.alt = images.heroImageAlt || 'Imagem do hero'; }
+    if (heroPreview) { heroPreview.src = images.heroImage; heroPreview.style.display = 'block'; heroPreview.alt = images.heroImageAlt || 'Pré-visualização hero'; }
     if (heroPlaceholder) heroPlaceholder.style.display = 'none';
+    if (heroAlt) heroAlt.value = images.heroImageAlt || '';
+  } else if (heroImg) {
+    heroImg.removeAttribute('src'); heroImg.style.display = 'none';
   }
   if (images.aboutImage) {
-    if (aboutImg) { aboutImg.src = images.aboutImage; aboutImg.style.display = 'block'; }
-    if (aboutPreview) { aboutPreview.src = images.aboutImage; aboutPreview.style.display = 'block'; }
+    if (aboutImg) { aboutImg.src = images.aboutImage; aboutImg.style.display = 'block'; aboutImg.alt = images.aboutImageAlt || 'Imagem da missão'; }
+    if (aboutPreview) { aboutPreview.src = images.aboutImage; aboutPreview.style.display = 'block'; aboutPreview.alt = images.aboutImageAlt || 'Pré-visualização missão'; }
     if (aboutPlaceholder) aboutPlaceholder.style.display = 'none';
+    if (aboutAlt) aboutAlt.value = images.aboutImageAlt || '';
+  } else if (aboutImg) {
+    aboutImg.removeAttribute('src'); aboutImg.style.display = 'none';
   }
 }
 
-function handlePageImage(event, key, imgId, placeholderId) {
+function savePageImageAlt(key, inputId) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  const images = getData('pageImages', {});
+  images[key] = input.value.trim();
+  setData('pageImages', images);
+}
+
+function resizeAndCompressImage(file, maxWidth = 1400, quality = 0.85) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = event => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ratio = Math.min(maxWidth / img.width, maxWidth / img.height, 1);
+        canvas.width = Math.max(1, Math.round(img.width * ratio));
+        canvas.height = Math.max(1, Math.round(img.height * ratio));
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = reject;
+      img.src = event.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handlePageImage(event, key, imgId, previewId, placeholderId, altInputId) {
   const file = event.target.files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const data = ev.target.result;
+  try {
+    const data = await resizeAndCompressImage(file);
     const images = getData('pageImages', {});
     images[key] = data;
+    const altInput = document.getElementById(altInputId);
+    if (altInput && !altInput.value.trim()) {
+      altInput.value = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').trim();
+    }
+    const altValue = altInput ? altInput.value.trim() : '';
+    if (altInput) images[altInputId === 'hero-image-alt' ? 'heroImageAlt' : 'aboutImageAlt'] = altValue;
     setData('pageImages', images);
     const img = document.getElementById(imgId);
-    const preview = document.getElementById(imgId === 'hero-image' ? 'hero-image-preview' : 'about-image-preview');
+    const preview = document.getElementById(previewId);
     const placeholder = document.getElementById(placeholderId);
-    if (img) { img.src = data; img.style.display = 'block'; }
-    if (preview) { preview.src = data; preview.style.display = 'block'; }
+    if (img) { img.src = data; img.style.display = 'block'; img.alt = altValue || 'Imagem carregada'; }
+    if (preview) { preview.src = data; preview.style.display = 'block'; preview.alt = altValue || 'Pré-visualização'; }
     if (placeholder) placeholder.style.display = 'none';
     document.getElementById('ok-page-images').classList.add('show');
     setTimeout(() => document.getElementById('ok-page-images').classList.remove('show'), 3000);
-  };
-  reader.readAsDataURL(file);
+  } catch (error) {
+    console.error('Erro ao processar imagem:', error);
+    alert('Não foi possível carregar a imagem. Tente outra imagem.');
+  }
+}
+
+function removePageImage(key, imgId, previewId, placeholderId, altInputId) {
+  const images = getData('pageImages', {});
+  delete images[key];
+  if (altInputId === 'hero-image-alt') delete images.heroImageAlt; else delete images.aboutImageAlt;
+  setData('pageImages', images);
+  const img = document.getElementById(imgId);
+  const preview = document.getElementById(previewId);
+  const placeholder = document.getElementById(placeholderId);
+  if (img) { img.removeAttribute('src'); img.style.display = 'none'; }
+  if (preview) { preview.removeAttribute('src'); preview.style.display = 'none'; }
+  if (placeholder) placeholder.style.display = 'block';
+  const altInput = document.getElementById(altInputId);
+  if (altInput) altInput.value = '';
+  document.getElementById('ok-page-images').classList.add('show');
+  setTimeout(() => document.getElementById('ok-page-images').classList.remove('show'), 3000);
 }
 
 function savePageImages() {
+  const images = getData('pageImages', {});
+  const heroAlt = document.getElementById('hero-image-alt');
+  const aboutAlt = document.getElementById('about-image-alt');
+  if (heroAlt) images.heroImageAlt = heroAlt.value.trim();
+  if (aboutAlt) images.aboutImageAlt = aboutAlt.value.trim();
+  setData('pageImages', images);
   loadPageImages();
   document.getElementById('ok-page-images').classList.add('show');
   setTimeout(() => document.getElementById('ok-page-images').classList.remove('show'), 3000);
