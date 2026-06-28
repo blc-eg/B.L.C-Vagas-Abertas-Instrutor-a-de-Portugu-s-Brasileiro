@@ -2548,6 +2548,8 @@ function addSocialLink() {
   links.push({ name, url, visible });
   setData('socialLinks', links);
   renderSocialLinks(links);
+  applyFooterSocialLinks(links);
+  refreshPublicView();
   document.getElementById('new-social-name').value = '';
   document.getElementById('new-social-url').value = '';
   document.getElementById('new-social-visible').value = 'true';
