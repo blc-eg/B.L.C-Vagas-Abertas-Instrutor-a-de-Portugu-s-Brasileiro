@@ -62,6 +62,10 @@
     .hero-scroll-dot { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; animation: bounce 2s infinite; }
     @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
+    .hero-side-stack { display: flex; flex-direction: column; gap: 18px; }
+    .hero-media-card, .about-media-card { background: rgba(255,255,255,.06); border: 1px solid rgba(184,151,58,.2); backdrop-filter: blur(20px); border-radius: 22px; padding: 16px; }
+    .hero-media-card img, .about-media-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 16px; display: none; }
+    .hero-media-card .placeholder, .about-media-card .placeholder { min-height: 220px; border: 1px dashed rgba(255,255,255,.17); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.6); font-size: 15px; text-align: center; padding: 20px; }
     .hero-form { background: rgba(255,255,255,.06); border: 1px solid rgba(184,151,58,.2); backdrop-filter: blur(20px); border-radius: 22px; padding: 40px 36px; }
     .hero-form .badge { display: inline-block; background: var(--gold); color: var(--primary); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
     .hero-form h2 { font-family: var(--font-display); font-size: 26px; font-weight: 600; color: #fff; margin-bottom: 4px; }
@@ -288,6 +292,14 @@
     .faq-fab { position: fixed; right: 20px; bottom: 20px; z-index: 700; background: var(--primary); color: #fff; border: none; border-radius: 999px; padding: 13px 18px; box-shadow: var(--shadow); font-weight: 700; cursor: pointer; font-family: var(--font-main); }
 
     .logo-upload { border: 2px dashed #c8d4cc; border-radius: var(--radius); padding: 28px; text-align: center; cursor: pointer; transition: var(--transition); background: #fafcfb; position: relative; }
+    .form-field-editor-list { display: flex; flex-direction: column; gap: 12px; }
+    .form-field-editor-item { background: #f7f9f8; border: 1px solid #dde4e0; border-radius: 10px; padding: 12px; display: grid; gap: 10px; }
+    .form-field-editor-item .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .form-field-editor-item .row.small { grid-template-columns: 1fr 1fr 1fr; }
+    .form-field-editor-item .meta { display: flex; justify-content: space-between; align-items: center; color: var(--primary); font-size: 13px; font-weight: 600; }
+    .form-field-editor-item button { background: none; border: 1px solid #c0392b; color: #c0392b; padding: 6px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; }
+    .image-upload-card { background: #f7f9f8; border: 1px solid #dde4e0; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+    .image-upload-card img { width: 100%; max-height: 180px; object-fit: cover; border-radius: 10px; display: none; margin-top: 10px; }
     .logo-upload:hover { border-color: var(--primary); background: #f0f7f3; }
     .logo-upload input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
     .logo-preview-ring { width: 80px; height: 80px; border-radius: 50%; border: 2.5px solid var(--gold); overflow: hidden; background: #eef2f0; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
@@ -405,64 +417,20 @@
         </div>
       </div>
 
-      <div class="hero-form" id="hero-form">
-        <div class="badge" id="form-badge">📋 Candidatura Aberta</div>
-        <h2 id="form-title">Candidatar-se Agora</h2>
-        <div class="sub" id="form-sub">A nossa equipa entrará em contacto em 48 horas</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:16px;">* Campos obrigatórios</div>
-
-        <div class="form-group">
-          <label>Nome Completo *</label>
-          <input type="text" id="f-name" placeholder="Introduza o seu nome completo">
+      <div class="hero-side-stack">
+        <div class="hero-media-card" id="hero-media-card">
+          <img id="hero-image" src="" alt="Imagem do hero">
+          <div class="placeholder" id="hero-image-placeholder">🖼️ Imagem do hero</div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>E-mail *</label>
-            <input type="email" id="f-email" placeholder="nome@email.com">
-          </div>
-          <div class="form-group">
-            <label>Telefone *</label>
-            <input type="tel" id="f-phone" placeholder="+20 ...">
-          </div>
+        <div class="hero-form" id="hero-form">
+          <div class="badge" id="form-badge">📋 Candidatura Aberta</div>
+          <h2 id="form-title">Candidatar-se Agora</h2>
+          <div class="sub" id="form-sub">A nossa equipa entrará em contacto em 48 horas</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:16px;">* Campos obrigatórios</div>
+          <div id="application-dynamic-fields"></div>
+          <button class="form-submit" id="hero-form-submit" onclick="handleSubmit()">Enviar Candidatura →</button>
+          <div class="form-privacy" id="hero-form-privacy">🔒 Os seus dados são tratados de forma confidencial</div>
         </div>
-        <div class="form-group">
-          <label>Nível de Português *</label>
-          <select id="f-level">
-            <option value="" disabled selected>Selecione o nível</option>
-            <option value="B2">B2 – Utilizador Independente Avançado</option>
-            <option value="C1">C1 – Utilizador Proficiente</option>
-            <option value="C2">C2 – Domínio Pleno</option>
-            <option value="Nativo">Falante Nativo</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Experiência em Ensino *</label>
-          <select id="f-exp">
-            <option value="" disabled selected>Selecione o nível</option>
-            <option>Menos de 1 ano</option>
-            <option>1 – 3 anos</option>
-            <option>3 – 5 anos</option>
-            <option>Mais de 5 anos</option>
-          </select>
-        </div>
-        <div class="form-group" id="pub-cv-field">
-          <label>Currículo / CV (PDF)</label>
-          <input type="file" accept=".pdf,.doc,.docx" id="f-cv" style="color:rgba(255,255,255,.7)">
-        </div>
-        <div class="form-group" id="pub-linkedin-field">
-          <label>Perfil LinkedIn</label>
-          <input type="url" id="f-linkedin" placeholder="https://linkedin.com/in/...">
-        </div>
-        <div class="form-group" id="pub-nationality-field">
-          <label>Nacionalidade</label>
-          <input type="text" id="f-nationality" placeholder="Ex: Brasileira, Portuguesa...">
-        </div>
-        <div class="form-group">
-          <label>Motivação — Por que quer integrar a nossa equipa?</label>
-          <textarea id="f-why" placeholder="Conte-nos brevemente sobre si e a sua motivação..."></textarea>
-        </div>
-        <button class="form-submit" id="hero-form-submit" onclick="handleSubmit()">Enviar Candidatura →</button>
-        <div class="form-privacy" id="hero-form-privacy">🔒 Os seus dados são tratados de forma confidencial</div>
       </div>
     </div>
   </section>
@@ -527,6 +495,10 @@
         </div>
       </div>
       <div class="about-right">
+        <div class="about-media-card" id="about-media-card">
+          <img id="about-image" src="" alt="Imagem da missão">
+          <div class="placeholder" id="about-image-placeholder">🖼️ Imagem da missão</div>
+        </div>
         <div class="about-card"><div class="ac-num" id="ac1-num">+15</div><div class="ac-lbl" id="ac1-lbl">Instrutores qualificados na equipa atual</div></div>
         <div class="about-card"><div class="ac-num" id="ac2-num">+30</div><div class="ac-lbl" id="ac2-lbl">Cursos e programas disponíveis</div></div>
         <div class="about-card"><div class="ac-num" id="ac3-num">Cairo</div><div class="ac-lbl" id="ac3-lbl">Sede principal — com presença online global</div></div>
@@ -663,6 +635,7 @@
       <button class="adm-tab" onclick="switchTab('pages',this)">📄 Páginas</button>
       <button class="adm-tab" onclick="switchTab('add',this)">➕ Adicionar</button>
       <button class="adm-tab" onclick="switchTab('logo',this)">🖼️ Logo</button>
+      <button class="adm-tab" onclick="switchTab('form',this)">📋 Formulário</button>
       <button class="adm-tab" onclick="switchTab('share',this)">📤 Compartilhar</button>
       <button class="adm-tab" onclick="switchTab('email',this)">✉️ E-mail</button>
       <button class="adm-tab" onclick="switchTab('account',this)">🔐 Conta</button>
@@ -798,7 +771,6 @@ Pacote competitivo</textarea></div>
               <div class="sf"><label>Botão principal do menu</label><input type="text" id="edit-nav-cta" value="Candidatar-se →"></div>
               <div class="sf"><label>Texto do botão de envio do formulário</label><input type="text" id="edit-form-submit" value="Enviar Candidatura →"></div>
               <div class="sf"><label>Texto de privacidade do formulário</label><input type="text" id="edit-form-privacy" value="🔒 Os seus dados são tratados de forma confidencial"></div>
-              <div class="sf"><label>Texto do separador / anúncio</label><input type="text" id="edit-announce" value="Vagas Abertas — Instrutor de Português Brasileiro"></div>
               <div class="sf"><label>Texto do separador FAQ</label><input type="text" id="edit-faq-title" value="Perguntas Frequentes"></div>
               <div class="sf"><label>Legenda do separador FAQ</label><input type="text" id="edit-faq-kicker" value="Perguntas Frequentes"></div>
             </div>
@@ -958,6 +930,46 @@ Pacote competitivo</textarea></div>
           </div>
           <button class="save-btn" style="margin-top:16px;" onclick="saveLogo()">💾 Salvar Logo</button>
           <div class="save-ok" id="ok-logo">✅ Logo salvo!</div>
+        </div>
+        <div class="acard">
+          <div class="acard-title">🖼️ Imagens da página</div>
+          <div class="image-upload-card">
+            <div class="acard-sub" style="margin:0 0 8px;">Imagem do hero (lado direito)</div>
+            <input type="file" id="hero-image-file" accept="image/*" onchange="handlePageImage(event, 'heroImage', 'hero-image', 'hero-image-placeholder')">
+            <img id="hero-image-preview" src="" alt="Pré-visualização hero">
+          </div>
+          <div class="image-upload-card">
+            <div class="acard-sub" style="margin:0 0 8px;">Imagem da secção Sobre / Missão</div>
+            <input type="file" id="about-image-file" accept="image/*" onchange="handlePageImage(event, 'aboutImage', 'about-image', 'about-image-placeholder')">
+            <img id="about-image-preview" src="" alt="Pré-visualização missão">
+          </div>
+          <button class="save-btn" onclick="savePageImages()">💾 Guardar Imagens</button>
+          <div class="save-ok" id="ok-page-images">✅ Imagens guardadas!</div>
+        </div>
+      </div>
+
+      <!-- TAB FORMULÁRIO -->
+      <div id="tab-form" class="adm-tab-pane">
+        <div class="acard">
+          <div class="acard-title">📋 Campos do formulário de candidatura</div>
+          <div class="acard-sub">Adicione, remova ou edite os campos que o candidato preenche no formulário.</div>
+          <div class="form-field-editor-list" id="form-field-editor-list"></div>
+          <div class="acard" style="margin-top:12px;">
+            <div class="acard-title" style="margin-bottom:10px;">➕ Novo campo</div>
+            <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="sf"><label>Nome interno</label><input type="text" id="new-form-field-id" placeholder="ex.: linkedin"></div>
+              <div class="sf"><label>Etiqueta</label><input type="text" id="new-form-field-label" placeholder="Ex.: Perfil LinkedIn"></div>
+            </div>
+            <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="sf"><label>Tipo</label><select id="new-form-field-type"><option value="text">Texto</option><option value="email">E-mail</option><option value="tel">Telefone</option><option value="url">URL</option><option value="number">Número</option><option value="textarea">Área de texto</option><option value="select">Lista (select)</option><option value="file">Arquivo</option></select></div>
+              <div class="sf"><label>Placeholder</label><input type="text" id="new-form-field-placeholder" placeholder="Ajuda para o candidato"></div>
+            </div>
+            <div class="sf"><label>Opções (uma por linha, use "valor|rótulo" se necessário)</label><textarea id="new-form-field-options" rows="3" placeholder="B2|B2 – Avançado
+C1|C1 – Proficiente"></textarea></div>
+            <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;margin-bottom:12px;"><input type="checkbox" id="new-form-field-required"> Obrigatório</label>
+            <button class="save-btn" onclick="addFormField()">➕ Adicionar Campo</button>
+            <div class="save-ok" id="ok-form-fields">✅ Campos do formulário atualizados!</div>
+          </div>
         </div>
       </div>
 
@@ -1144,10 +1156,12 @@ function showAdmin() {
   renderDynamicEditors();
   renderCustomSections();
   renderSubs();
+  renderFormFieldEditors();
   updateShareLink();
   loadAppearance();
   loadContent();
   loadLogo();
+  loadPageImages();
   loadEmailConfig();
 }
 
@@ -1165,14 +1179,17 @@ function checkAdminAccess() {
 
 // ===== SUBMISSÃO DO FORMULÁRIO =====
 function handleSubmit() {
-  const name = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
-  const level = document.getElementById('f-level').value;
-  const exp = document.getElementById('f-exp').value;
-  const why = document.getElementById('f-why').value.trim();
-
-  if (!name || !email || !phone || !level || !exp) {
+  const fields = getData('formFields', []);
+  const values = {};
+  let hasError = false;
+  fields.forEach(field => {
+    const el = document.getElementById('f-' + field.id);
+    if (!el) return;
+    const value = field.type === 'file' ? (el.files && el.files[0] ? el.files[0].name : '') : el.value.trim();
+    if (field.required && !value) hasError = true;
+    values[field.id] = value;
+  });
+  if (hasError) {
     alert('Por favor, preencha todos os campos obrigatórios (*).');
     return;
   }
@@ -1180,10 +1197,8 @@ function handleSubmit() {
   const sub = {
     id: Date.now(),
     date: new Date().toLocaleString('pt-PT'),
-    name, email, phone, level, exp, why,
-    linkedin: document.getElementById('f-linkedin').value || '',
-    nationality: document.getElementById('f-nationality').value || '',
-    status: getStatusConfig()[0]?.value || 'new'
+    status: getStatusConfig()[0]?.value || 'new',
+    ...values
   };
 
   subs.unshift(sub);
@@ -1194,11 +1209,13 @@ function handleSubmit() {
     queueEmailPreview('submission', sub);
   }
 
-  ['f-name','f-email','f-phone','f-why','f-linkedin','f-nationality'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.value = '';
+  fields.forEach(field => {
+    const el = document.getElementById('f-' + field.id);
+    if (!el) return;
+    if (field.type === 'select') el.selectedIndex = 0;
+    else if (field.type === 'file') el.value = '';
+    else el.value = '';
   });
-  ['f-level','f-exp'].forEach(id => { const el = document.getElementById(id); if (el) el.selectedIndex = 0; });
-  document.getElementById('f-cv').value = '';
 
   document.getElementById('suc-overlay').classList.add('show');
 }
@@ -1737,6 +1754,123 @@ function saveContent() {
   setTimeout(() => document.getElementById('ok-content').classList.remove('show'), 3000);
 }
 
+function renderFormFieldEditors() {
+  const container = document.getElementById('form-field-editor-list');
+  if (!container) return;
+  const fields = getData('formFields', getDefaultFormFields());
+  container.innerHTML = fields.map((field, index) => `
+    <div class="form-field-editor-item">
+      <div class="meta">
+        <span>${esc(field.label || field.id)}</span>
+        <span>${esc(field.required ? 'Obrigatório' : 'Opcional')}</span>
+      </div>
+      <div class="row">
+        <div class="sf"><label>Nome interno</label><input type="text" value="${esc(field.id)}" data-index="${index}" data-field="id"></div>
+        <div class="sf"><label>Etiqueta</label><input type="text" value="${esc(field.label)}" data-index="${index}" data-field="label"></div>
+      </div>
+      <div class="row">
+        <div class="sf"><label>Tipo</label><select data-index="${index}" data-field="type"><option value="text" ${field.type === 'text' ? 'selected' : ''}>Texto</option><option value="email" ${field.type === 'email' ? 'selected' : ''}>E-mail</option><option value="tel" ${field.type === 'tel' ? 'selected' : ''}>Telefone</option><option value="url" ${field.type === 'url' ? 'selected' : ''}>URL</option><option value="number" ${field.type === 'number' ? 'selected' : ''}>Número</option><option value="textarea" ${field.type === 'textarea' ? 'selected' : ''}>Área de texto</option><option value="select" ${field.type === 'select' ? 'selected' : ''}>Select</option><option value="file" ${field.type === 'file' ? 'selected' : ''}>Arquivo</option></select></div>
+        <div class="sf"><label>Placeholder</label><input type="text" value="${esc(field.placeholder || '')}" data-index="${index}" data-field="placeholder"></div>
+      </div>
+      <div class="sf"><label>Opções (uma por linha)</label><textarea data-index="${index}" data-field="options">${esc(Array.isArray(field.options) ? field.options.join('\n') : (field.options || ''))}</textarea></div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;"><input type="checkbox" ${field.required ? 'checked' : ''} data-index="${index}" data-field="required"> Obrigatório</label>
+      <button onclick="removeFormField(${index})">🗑 Remover</button>
+    </div>
+  `).join('');
+  container.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('change', () => saveFormFieldEditors());
+    el.addEventListener('input', () => saveFormFieldEditors());
+  });
+}
+
+function saveFormFieldEditors() {
+  const fields = [];
+  document.querySelectorAll('#form-field-editor-list .form-field-editor-item').forEach((item, index) => {
+    const id = item.querySelector('[data-field="id"]').value.trim();
+    const label = item.querySelector('[data-field="label"]').value.trim();
+    const type = item.querySelector('[data-field="type"]').value;
+    const placeholder = item.querySelector('[data-field="placeholder"]').value.trim();
+    const options = item.querySelector('[data-field="options"]').value.split('\n').map(v => v.trim()).filter(Boolean);
+    const required = item.querySelector('[data-field="required"]').checked;
+    if (id && label) fields.push({ id, label, type, placeholder, options, required });
+  });
+  if (!fields.length) fields.push(...getDefaultFormFields());
+  setData('formFields', fields);
+  renderApplicationForm();
+  document.getElementById('ok-form-fields').classList.add('show');
+  setTimeout(() => document.getElementById('ok-form-fields').classList.remove('show'), 3000);
+}
+
+function removeFormField(index) {
+  const fields = getData('formFields', getDefaultFormFields());
+  fields.splice(index, 1);
+  setData('formFields', fields);
+  renderFormFieldEditors();
+  renderApplicationForm();
+}
+
+function addFormField() {
+  const id = document.getElementById('new-form-field-id').value.trim().toLowerCase().replace(/\s+/g, '-');
+  const label = document.getElementById('new-form-field-label').value.trim();
+  const type = document.getElementById('new-form-field-type').value;
+  const placeholder = document.getElementById('new-form-field-placeholder').value.trim();
+  const options = document.getElementById('new-form-field-options').value.split('\n').map(v => v.trim()).filter(Boolean);
+  const required = document.getElementById('new-form-field-required').checked;
+  if (!id || !label) { alert('Defina um nome interno e uma etiqueta.'); return; }
+  const fields = getData('formFields', getDefaultFormFields());
+  fields.push({ id, label, type, placeholder, options, required });
+  setData('formFields', fields);
+  renderFormFieldEditors();
+  renderApplicationForm();
+  document.getElementById('new-form-field-id').value = '';
+  document.getElementById('new-form-field-label').value = '';
+  document.getElementById('new-form-field-placeholder').value = '';
+  document.getElementById('new-form-field-options').value = '';
+  document.getElementById('new-form-field-required').checked = false;
+  document.getElementById('ok-form-fields').classList.add('show');
+  setTimeout(() => document.getElementById('ok-form-fields').classList.remove('show'), 3000);
+}
+
+function getDefaultFormFields() {
+  return [
+    { id: 'name', label: 'Nome Completo', type: 'text', placeholder: 'Introduza o seu nome completo', required: true },
+    { id: 'email', label: 'E-mail', type: 'email', placeholder: 'nome@email.com', required: true },
+    { id: 'phone', label: 'Telefone', type: 'tel', placeholder: '+20 ...', required: true },
+    { id: 'level', label: 'Nível de Português', type: 'select', placeholder: '', options: ['B2|B2 – Utilizador Independente Avançado','C1|C1 – Utilizador Proficiente','C2|C2 – Domínio Pleno','Nativo|Falante Nativo'], required: true },
+    { id: 'exp', label: 'Experiência em Ensino', type: 'select', placeholder: '', options: ['Menos de 1 ano','1 – 3 anos','3 – 5 anos','Mais de 5 anos'], required: true },
+    { id: 'cv', label: 'Currículo / CV (PDF)', type: 'file', placeholder: '', required: false },
+    { id: 'linkedin', label: 'Perfil LinkedIn', type: 'url', placeholder: 'https://linkedin.com/in/...', required: false },
+    { id: 'nationality', label: 'Nacionalidade', type: 'text', placeholder: 'Ex: Brasileira, Portuguesa...', required: false },
+    { id: 'why', label: 'Motivação — Por que quer integrar a nossa equipa?', type: 'textarea', placeholder: 'Conte-nos brevemente sobre si e a sua motivação...', required: false }
+  ];
+}
+
+function renderApplicationForm() {
+  const container = document.getElementById('application-dynamic-fields');
+  if (!container) return;
+  const fields = getData('formFields', getDefaultFormFields());
+  container.innerHTML = fields.map(field => {
+    const id = 'f-' + field.id;
+    const label = `${field.label}${field.required ? ' *' : ''}`;
+    if (field.type === 'textarea') {
+      return `<div class="form-group"><label>${esc(label)}</label><textarea id="${id}" placeholder="${esc(field.placeholder || '')}"></textarea></div>`;
+    }
+    if (field.type === 'select') {
+      const options = (field.options || []).map(option => {
+        const [value, labelText] = String(option).split('|');
+        const finalValue = (value || labelText || '').trim();
+        const finalLabel = (labelText || value || '').trim();
+        return `<option value="${esc(finalValue)}">${esc(finalLabel || finalValue)}</option>`;
+      }).join('');
+      return `<div class="form-group"><label>${esc(label)}</label><select id="${id}"><option value="" disabled selected>Selecione</option>${options}</select></div>`;
+    }
+    if (field.type === 'file') {
+      return `<div class="form-group"><label>${esc(label)}</label><input type="file" accept=".pdf,.doc,.docx" id="${id}" style="color:rgba(255,255,255,.7)"></div>`;
+    }
+    return `<div class="form-group"><label>${esc(label)}</label><input type="${field.type || 'text'}" id="${id}" placeholder="${esc(field.placeholder || '')}"></div>`;
+  }).join('');
+}
+
 function renderDynamicEditors() {
   const benefits = getData('benefits', []);
   const requirementEditor = document.getElementById('requirement-editor-list');
@@ -2096,6 +2230,53 @@ function switchTab(name, btn) {
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 // ===== CARREGAR DADOS SALVOS =====
+function loadPageImages() {
+  const images = getData('pageImages', {});
+  const heroImg = document.getElementById('hero-image');
+  const heroPreview = document.getElementById('hero-image-preview');
+  const heroPlaceholder = document.getElementById('hero-image-placeholder');
+  const aboutImg = document.getElementById('about-image');
+  const aboutPreview = document.getElementById('about-image-preview');
+  const aboutPlaceholder = document.getElementById('about-image-placeholder');
+  if (images.heroImage) {
+    if (heroImg) { heroImg.src = images.heroImage; heroImg.style.display = 'block'; }
+    if (heroPreview) { heroPreview.src = images.heroImage; heroPreview.style.display = 'block'; }
+    if (heroPlaceholder) heroPlaceholder.style.display = 'none';
+  }
+  if (images.aboutImage) {
+    if (aboutImg) { aboutImg.src = images.aboutImage; aboutImg.style.display = 'block'; }
+    if (aboutPreview) { aboutPreview.src = images.aboutImage; aboutPreview.style.display = 'block'; }
+    if (aboutPlaceholder) aboutPlaceholder.style.display = 'none';
+  }
+}
+
+function handlePageImage(event, key, imgId, placeholderId) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const data = ev.target.result;
+    const images = getData('pageImages', {});
+    images[key] = data;
+    setData('pageImages', images);
+    const img = document.getElementById(imgId);
+    const preview = document.getElementById(imgId === 'hero-image' ? 'hero-image-preview' : 'about-image-preview');
+    const placeholder = document.getElementById(placeholderId);
+    if (img) { img.src = data; img.style.display = 'block'; }
+    if (preview) { preview.src = data; preview.style.display = 'block'; }
+    if (placeholder) placeholder.style.display = 'none';
+    document.getElementById('ok-page-images').classList.add('show');
+    setTimeout(() => document.getElementById('ok-page-images').classList.remove('show'), 3000);
+  };
+  reader.readAsDataURL(file);
+}
+
+function savePageImages() {
+  loadPageImages();
+  document.getElementById('ok-page-images').classList.add('show');
+  setTimeout(() => document.getElementById('ok-page-images').classList.remove('show'), 3000);
+}
+
 function loadSavedData() {
   const benefits = getData('benefits', [
     { icon: '💰', title: 'Salário Competitivo', desc: 'Pacote financeiro atrativo com bónus de desempenho trimestrais.' },
@@ -2134,6 +2315,8 @@ function loadSavedData() {
   loadAppearance();
   loadContent();
   loadLogo();
+  loadPageImages();
+  renderApplicationForm();
 }
 
 // ===== INIT =====
